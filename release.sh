@@ -95,8 +95,8 @@ fi
     
     grep "## $release" CHANGELOG.md || {
         echo "update CHANGELOG.md"
-        
-        
+        new_section="$release - $(date -I)" # 4.5.6 - 2020-12-31
+        sed --in-place "0,/\[Unreleased\]/s//$new_section/" CHANGELOG.md
         echo "---"
     }
     
