@@ -4,11 +4,11 @@ set -eu # everything must pass, no unbound variables
 #set -x # display commands executed
 
 export GIT_PAGER=cat
+export GITHUB_TOKEN=$(cat .github-token)
 
 release="$1" # "1.2.3"
 previous_releases=[] # populated after strongbox available
 
-# used to check given release is greater than the previous release
 if [ ! -e "semver2.sh" ]; then
     echo "downloading semver2.sh"
     curl https://raw.githubusercontent.com/Ariel-Rodriguez/sh-semversion-2/1.0.3/semver2.sh -o semver2.sh
@@ -16,19 +16,28 @@ if [ ! -e "semver2.sh" ]; then
     echo "---"
 fi
 
+if [ ! -e "gh" ]; then
+    echo "github's 'gh' cli tool"
+    rm -rf gh_1.14.0_linux_amd64/ gh_1.14.0_linux_amd64.tar.gz gh.tar.gz
+    wget https://github.com/cli/cli/releases/download/v1.14.0/gh_1.14.0_linux_amd64.tar.gz --output-document gh.tar.gz
+    tar xvzf gh.tar.gz
+    mv gh_1.14.0_linux_amd64/bin/gh ./gh
+    rm -rf gh_1.14.0_linux_amd64
+fi
 
 if [ ! -e "strongbox" ]; then
     echo "cloning strongbox"
-    git clone ssh://git@github.com/ogri-la/strongbox
+    git clone ssh://git@github.com/ogri-la/temp-strongbox-clone strongbox
     echo "---"
 fi
 
 {
-    echo "cleaning strongbox"
     cd strongbox
+
+    echo "cleaning strongbox"
     #git fetch # todo: disabled for speed
     git reset --hard
-    git checkout develop --force
+    git checkout develop
     git clean -d --force
     #lein clean # todo: disabled for speed
     echo "---"
@@ -40,7 +49,7 @@ fi
     last_release=${previous_releases[-1]}
     major_release=false
     # assumes single digit releases. will work until we hit double digits.
-    if [ ${release:0:1} -gt ${last_release:0:1} ]; then
+    if [ "${release:0:1}" -gt "${last_release:0:1}" ]; then
         major_release=true
     fi
 
@@ -77,7 +86,7 @@ fi
         "s/defproject ogri-la\/strongbox \"[0-9.]+-unreleased\"/defproject ogri-la\/strongbox \"$release\"/" \
         project.clj
     echo "---"
-    
+
     if $major_release; then
         echo "updating SECURITY.md"
         grep "| $major_version.x.x" SECURITY.md || {
@@ -92,13 +101,33 @@ fi
         }
         echo "---"
     fi
-    
+
     grep "## $release" CHANGELOG.md || {
-        echo "update CHANGELOG.md"
+        echo "updating CHANGELOG.md"
         new_section="$release - $(date -I)" # 4.5.6 - 2020-12-31
         sed --in-place "0,/\[Unreleased\]/s//$new_section/" CHANGELOG.md
         echo "---"
     }
-    
-    
+
+    echo "updating README.md"
+    sed --in-place --regexp-extended "s/strongbox-[0-9\.]+-standalone.jar/strongbox-$release-standalone.jar/g" README.md
+    # "/1.2.3/" => "/4.5.6/"
+    sed --in-place --regexp-extended "s/\/[0-9\.]+\//\/$release\//" README.md
+    echo "---"
+
+    echo "updating pom.xml"
+    lein pom
+    echo "---"
+
+    echo "updating remote"
+    git commit -am "$release"
+    git push --set-upstream origin "$release"
+    ../gh pr create \
+        --base "master" \
+        --head "$release" \
+        --body "- [ ] review" \
+        --title "$release"
+    echo "---"
 }
+
+echo "done"
