@@ -53,12 +53,33 @@ fi
     echo "---"
     
     echo "creating Github release"
-    pwd
     ../gh release create "$release" \
         --title "$release" \
         --notes "$(../parse-changelog CHANGELOG.md "$release")"
     ../gh release upload "$release" release/*
     echo "---"
 )
+
+if [ ! -e strongbox-pkgbuild ]; then
+    git clone ssh://git@github.com/ogri-la/strongbox-pkgbuild
+fi
+
+(
+    cd strongbox-pkgbuild
+
+    echo "cleaning strongbox-pkgbuild"
+    git reset --hard # revert any outstanding changes
+    git clean -d --force # remove any untracked files
+    git pull
+    echo "---"
+
+    echo "updating PKGBUILD"
+
+    # ...
+
+    echo "---"
+
+)
+
 
 echo "done"
