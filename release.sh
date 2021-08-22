@@ -67,7 +67,7 @@ fi
         exit 1
     fi
 
-    major_version=${release:0:1} # '5' in '5.6.7'
+    major_version=${release:0:1} # '4' in '4.5.6'
     echo "last release: $last_release"
     echo "this release: $release"
     echo "---"
@@ -104,12 +104,13 @@ fi
 
     grep "## $release" CHANGELOG.md || {
         echo "updating CHANGELOG.md"
-        new_section="$release - $(date -I)" # 4.5.6 - 2020-12-31
+        new_section="$release - $(date -I)" # "4.5.6 - 2020-12-31"
         sed --in-place "0,/\[Unreleased\]/s//$new_section/" CHANGELOG.md
         echo "---"
     }
 
     echo "updating README.md"
+    # "strongbox-1.2.3-standalone.jar" => "strongbox-4.5.6-standalone.jar"
     sed --in-place --regexp-extended "s/strongbox-[0-9\.]+-standalone.jar/strongbox-$release-standalone.jar/g" README.md
     # "/1.2.3/" => "/4.5.6/"
     sed --in-place --regexp-extended "s/\/[0-9\.]+\//\/$release\//" README.md
@@ -125,7 +126,7 @@ fi
     ../gh pr create \
         --base "master" \
         --head "$release" \
-        --body "- [ ] review" \
+        --body-file ../strongbox--pr-template.md \
         --title "$release"
     echo "---"
 }

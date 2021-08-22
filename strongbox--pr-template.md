@@ -1,0 +1,3 @@
+- [ ] test standalone jar on mac
+- [ ] test binary on linux
+- [ ] review
