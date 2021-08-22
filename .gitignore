@@ -2,3 +2,4 @@ gh
 .github-token
 strongbox
 semver2.sh
+parse-changelog

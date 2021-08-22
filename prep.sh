@@ -1,5 +1,12 @@
 #!/bin/bash
-# coordinates the release of ogri-la/strongbox
+# prepares a release of ogri-la/strongbox
+# assumes no outstanding changes or previous attempts!
+# run as a regular user. 
+# this script:
+# * does a clean checkout of strongbox `develop` branch
+# * creates a release branch
+# * updates README, SECURITY, CHANGELOG, pom.xml
+# * creates a pull request against master with a checklist
 set -eu # everything must pass, no unbound variables
 #set -x # display commands executed
 
@@ -31,15 +38,15 @@ if [ ! -e "strongbox" ]; then
     echo "---"
 fi
 
-{
+(
     cd strongbox
 
     echo "cleaning strongbox"
-    #git fetch # todo: disabled for speed
     git reset --hard
-    git checkout develop
     git clean -d --force
-    #lein clean # todo: disabled for speed
+    git fetch
+    git checkout develop
+    lein clean
     echo "---"
 
     echo "detecting versions"
@@ -52,10 +59,6 @@ fi
     if [ "${release:0:1}" -gt "${last_release:0:1}" ]; then
         major_release=true
     fi
-
-    #echo "previous releases: $previous_releases"
-    #echo "last release: $last_release"
-    #echo "this release: $release"
 
     rc=$(../semver2.sh "$release" "$last_release")
     if [ "$rc" = -1 ]; then
@@ -129,6 +132,6 @@ fi
         --body-file ../strongbox--pr-template.md \
         --title "$release"
     echo "---"
-}
+)
 
 echo "done"

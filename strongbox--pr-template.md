@@ -1,3 +1,3 @@
-- [ ] test standalone jar on mac
-- [ ] test binary on linux
+- [ ] quick test on mac
+- [ ] quick test on linux
 - [ ] review
