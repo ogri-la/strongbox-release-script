@@ -11,47 +11,49 @@ set -eu # everything must pass, no unbound variables
 #set -x # display commands executed
 
 export GIT_PAGER=cat
-export GITHUB_TOKEN=$(cat .github-token)
+GITHUB_TOKEN=$(cat .github-token)
+export GITHUB_TOKEN
 
 release="$1" # "1.2.3"
 previous_releases=[] # populated after strongbox available
 
 if [ ! -e "semver2.sh" ]; then
-    echo "downloading semver2.sh"
+    echo "--- downloading semver2.sh ---"
     curl https://raw.githubusercontent.com/Ariel-Rodriguez/sh-semversion-2/1.0.3/semver2.sh -o semver2.sh
     chmod +x semver2.sh
-    echo "---"
+    echo
 fi
 
 if [ ! -e "gh" ]; then
-    echo "github's 'gh' cli tool"
+    echo "--- downloading Github's 'gh' tool ---"
     rm -rf gh_1.14.0_linux_amd64/ gh_1.14.0_linux_amd64.tar.gz gh.tar.gz
     wget https://github.com/cli/cli/releases/download/v1.14.0/gh_1.14.0_linux_amd64.tar.gz --output-document gh.tar.gz
     tar xvzf gh.tar.gz
     mv gh_1.14.0_linux_amd64/bin/gh ./gh
     rm -rf gh_1.14.0_linux_amd64
+    echo
 fi
 
 if [ ! -e "strongbox" ]; then
-    echo "cloning strongbox"
+    echo "--- cloning strongbox ---"
     git clone ssh://git@github.com/ogri-la/temp-strongbox-clone strongbox
-    echo "---"
+    echo
 fi
 
 (
     cd strongbox
 
-    echo "cleaning strongbox"
+    echo "--- cleaning strongbox ---"
     git reset --hard
     git clean -d --force
     git fetch
     git checkout develop
     lein clean
-    echo "---"
+    echo
 
-    echo "detecting versions"
+    echo "--- detecting versions ---"
     previous_releases=$(git tag --list | grep --perl-regex '^\d+\.\d+\.\d+$' | sort --version-sort)
-    readarray -t previous_releases <<< $previous_releases
+    readarray -t previous_releases <<< "$previous_releases"
 
     last_release=${previous_releases[-1]}
     major_release=false
@@ -73,25 +75,25 @@ fi
     major_version=${release:0:1} # '4' in '4.5.6'
     echo "last release: $last_release"
     echo "this release: $release"
-    echo "---"
+    echo
 
-    echo "creating release branch '$release'"
+    echo "--- creating release branch '$release' ---"
     # if branch exists, delete it.
-    if [ ! -z $(git --no-pager branch | grep "$release") ]; then
+    if git --no-pager branch | grep --quiet "$release"; then
         git branch "$release" --delete --force
     fi
     git checkout -b "$release"
-    echo "---"
+    echo
 
-    echo "updating project.clj"
+    echo "--- updating project.clj ---"
     sed --regexp-extended \
         --in-place \
         "s/defproject ogri-la\/strongbox \"[0-9.]+-unreleased\"/defproject ogri-la\/strongbox \"$release\"/" \
         project.clj
-    echo "---"
+    echo
 
     if $major_release; then
-        echo "updating SECURITY.md"
+        echo "--- updating SECURITY.md ---"
         grep "| $major_version.x.x" SECURITY.md || {
             sed --in-place 's/:heavy_minus_sign:/:x:               /' SECURITY.md
             sed --in-place 's/:heavy_check_mark:/:heavy_minus_sign:/' SECURITY.md
@@ -102,28 +104,28 @@ fi
                 "/\- \|$/a $new_section" \
                 SECURITY.md
         }
-        echo "---"
+        echo
     fi
 
     grep "## $release" CHANGELOG.md || {
-        echo "updating CHANGELOG.md"
+        echo "--- updating CHANGELOG.md ---"
         new_section="$release - $(date -I)" # "4.5.6 - 2020-12-31"
         sed --in-place "0,/\[Unreleased\]/s//$new_section/" CHANGELOG.md
-        echo "---"
+        echo
     }
 
-    echo "updating README.md"
+    echo "--- updating README.md ---"
     # "strongbox-1.2.3-standalone.jar" => "strongbox-4.5.6-standalone.jar"
     sed --in-place --regexp-extended "s/strongbox-[0-9\.]+-standalone.jar/strongbox-$release-standalone.jar/g" README.md
     # "/1.2.3/" => "/4.5.6/"
     sed --in-place --regexp-extended "s/\/[0-9\.]+\//\/$release\//" README.md
-    echo "---"
+    echo
 
-    echo "updating pom.xml"
+    echo "--- updating pom.xml ---"
     lein pom
-    echo "---"
+    echo
 
-    echo "updating remote"
+    echo "--- creating pull request ---"
     git commit -am "$release"
     git push --set-upstream origin "$release"
     ../gh pr create \
@@ -131,7 +133,7 @@ fi
         --head "$release" \
         --body-file ../strongbox--pr-template.md \
         --title "$release"
-    echo "---"
+    echo
 )
 
 echo "done"

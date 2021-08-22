@@ -1,5 +1,6 @@
 gh
 .github-token
 strongbox
+strongbox-pkgbuild
 semver2.sh
 parse-changelog
