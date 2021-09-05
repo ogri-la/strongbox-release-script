@@ -1,8 +1,8 @@
 #!/bin/bash
 # creates a release of ogri-la/strongbox
 # assumes `prep.sh` has been run and the resulting PR has been merged into `master`.
-# assumes it is being run under Ubuntu 18.04 LTS
-# run as a regular user.
+# - script does not *depend* on prep.sh script however.
+# run as a regular user in Ubuntu 18.04 LTS
 # this script:
 # * does a clean checkout of strongbox `master` branch
 # * runs the `build-linux-image.sh` script and bundles the results with checksums
@@ -12,7 +12,7 @@
 set -eu # everything must pass, no unbound variables
 #set -x # display commands executed
 
-GITHUB_TOKEN=$(cat .github-token)
+GITHUB_TOKEN=$(cat ~/.github-token)
 export GITHUB_TOKEN
 
 release="$1" # "1.2.3"
@@ -25,6 +25,23 @@ if [ ! -e parse-changelog ]; then
     rm parse-changelog.tar.gz
     echo
 fi
+
+if [ ! -e "gh" ]; then
+    echo "--- downloading Github's 'gh' tool ---"
+    rm -rf gh_1.14.0_linux_amd64/ gh_1.14.0_linux_amd64.tar.gz gh.tar.gz
+    wget https://github.com/cli/cli/releases/download/v1.14.0/gh_1.14.0_linux_amd64.tar.gz --output-document gh.tar.gz
+    tar xvzf gh.tar.gz
+    mv gh_1.14.0_linux_amd64/bin/gh ./gh
+    rm -rf gh_1.14.0_linux_amd64
+    echo
+fi
+
+if [ ! -e "strongbox" ]; then
+    echo "--- cloning strongbox ---"
+    git clone ssh://git@github.com/ogri-la/strongbox strongbox
+    echo
+fi
+
 (
     cd strongbox
 

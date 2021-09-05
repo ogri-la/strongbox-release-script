@@ -1,7 +1,7 @@
 #!/bin/bash
 # prepares a release of ogri-la/strongbox
 # assumes no outstanding changes or previous attempts!
-# run as a regular user. 
+# run as a regular user in Vagrant
 # this script:
 # * does a clean checkout of strongbox `develop` branch
 # * creates a release branch
@@ -36,7 +36,7 @@ fi
 
 if [ ! -e "strongbox" ]; then
     echo "--- cloning strongbox ---"
-    git clone ssh://git@github.com/ogri-la/temp-strongbox-clone strongbox
+    git clone ssh://git@github.com/ogri-la/strongbox strongbox
     echo
 fi
 

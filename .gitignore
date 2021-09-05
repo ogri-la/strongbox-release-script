@@ -4,3 +4,4 @@ strongbox
 strongbox-pkgbuild
 semver2.sh
 parse-changelog
+.vagrant
