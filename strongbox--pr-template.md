@@ -2,3 +2,4 @@
 - [ ] quick test on linux
 - [ ] review
     - readme, changelog, project.clj, pom file, etc
+- [ ] merge

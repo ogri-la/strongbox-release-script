@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
                 echo #{ssh_pub_key} > /home/vagrant/.ssh/me.pub
                 chmod 0400 /home/vagrant/.ssh/me.*
                 chown vagrant:vagrant /home/vagrant/.ssh/me.*
-                echo '#{github_token}' > /home/vagrant/.github_token
+                echo '#{github_token}' > /home/vagrant/.github-token
             SHELL
         end
 

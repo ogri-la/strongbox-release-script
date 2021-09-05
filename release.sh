@@ -84,17 +84,10 @@ fi
 
 echo "--- cloning strongbox-pkgbuild ---"
 rm -rf strongbox-pkgbuild
-git clone ssh://git@github.com/ogri-la/strongbox-pkgbuild
+git clone ssh://aur.archlinux.org/strongbox.git
 (
     cd strongbox-pkgbuild
-    # todo:
-    # this is what the (working) original looks like:
-    # [remote "aur"]
-    #    url = ssh://aur@aur.archlinux.org/strongbox.git
-    #    fetch = +refs/heads/*:refs/remotes/origin/*
-    #
-    # this doesn't match but it might work as well??
-    git remote add --mirror=push AUR ssh://aur@aur.archlinux.org/strongbox.git
+    git remote add github ssh://git@github.com/ogri-la/strongbox-pkgbuild
     echo
 
     echo "--- updating PKGBUILD ---"
@@ -104,10 +97,12 @@ git clone ssh://git@github.com/ogri-la/strongbox-pkgbuild
     sha256=$(cut -d " " -f 1 ../strongbox/release/strongbox.sha256)
     sed --in-place --regexp-extended "s/sha256sums=.+./sha256sums=(\"$sha256\")/" PKGBUILD
 
+    # !!! makepkg is exclusive to Arch. what to do?
+
     makepkg --printsrcinfo > .SRCINFO
-    git commit -m "release $release"
+    git commit -am "release $release"
     git push
-    git push AUR
+    git push github
     echo
 )
 

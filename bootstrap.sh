@@ -16,8 +16,13 @@ echo "github.com,192.30.252.128 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9
 export DEBIAN_FRONTEND=noninteractive # no ncurses prompts
 sudo apt-get update -y
 sudo apt-get install -y --no-install-recommends \
-    git wget curl openjdk-11-jdk-headless \
+    git wget curl openjdk-11-jdk \
     fonts-dejavu libgtk-3-0 libxtst6
+(
+    cd /usr/bin
+    sudo wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+    sudo chmod +x lein
+)
 
 if [ ! -d strongbox-release-script ]; then
     git clone ssh://git@github.com/ogri-la/strongbox-release-script
