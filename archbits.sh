@@ -11,7 +11,8 @@ test -d strongbox
 
 echo "--- cloning strongbox-pkgbuild ---"
 rm -rf strongbox-pkgbuild
-git clone https://aur.archlinux.org/strongbox.git strongbox-pkgbuild
+export GIT_SSH_COMMAND='ssh -i /home/vagrant/.ssh/aur'
+git clone ssh://aur@aur.archlinux.org/strongbox.git strongbox-pkgbuild
 (
     cd strongbox-pkgbuild
     git remote add github ssh://git@github.com/ogri-la/strongbox-pkgbuild
