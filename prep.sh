@@ -17,6 +17,9 @@ export GITHUB_TOKEN
 release="$1" # "1.2.3"
 previous_releases=[] # populated after strongbox available
 
+# the branch to build a release from (develop)
+branch=${2:-develop}
+
 if [ ! -e "semver2.sh" ]; then
     echo "--- downloading semver2.sh ---"
     curl https://raw.githubusercontent.com/Ariel-Rodriguez/sh-semversion-2/1.0.3/semver2.sh -o semver2.sh
@@ -46,8 +49,8 @@ fi
     echo "--- cleaning strongbox ---"
     git reset --hard
     git clean -d --force
-    git checkout develop
     git pull
+    git checkout "$branch"
     lein clean
     echo
 
