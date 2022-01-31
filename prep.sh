@@ -49,8 +49,9 @@ fi
     echo "--- cleaning strongbox ---"
     git reset --hard
     git clean -d --force
-    git pull
+    git fetch
     git checkout "$branch"
+    git pull
     lein clean
     echo
 
