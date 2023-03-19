@@ -19,11 +19,15 @@ git clone ssh://aur@aur.archlinux.org/strongbox.git strongbox-pkgbuild
     echo
 
     echo "--- updating PKGBUILD ---"
+    ../parse-changelog ../strongbox/CHANGELOG.md "$release" > changelog
+    echo >> changelog
     sed --in-place --regexp-extended "s/pkgver=.+/pkgver=$release/" PKGBUILD
     sed --in-place --regexp-extended "s/pkgrel=.+/pkgrel=1/" PKGBUILD
 
-    sha256=$(cut -d " " -f 1 ../strongbox/release/strongbox.sha256)
-    sed --in-place --regexp-extended "s/sha256sums=.+./sha256sums=(\"$sha256\")/" PKGBUILD
+    strongbox_sha256=$(cut -d " " -f 1 ../strongbox/release/strongbox.sha256)
+    strongbox_desktop_sha256=$(sha256sum strongbox.desktop | cut -d " " -f 1)
+    sed --in-place --regexp-extended "s/strongbox_sha256=.+/strongbox_sha256=\"$strongbox_sha256\"/" PKGBUILD
+    sed --in-place --regexp-extended "s/strongbox_desktop_sha256=.+/strongbox_desktop_sha256=\"$strongbox_desktop_sha256\"/" PKGBUILD
 
     sudo systemctl start docker
     sudo docker build . \
