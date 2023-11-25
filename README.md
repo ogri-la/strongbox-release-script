@@ -1,21 +1,27 @@
 # strongbox release script
 
-Neither Travis nor CircleCI can handle my release process so I've switched to doing it manually.
-
-I'm sure with time and much frustration and resentment I could get these third parties to do what I wanted but I have 
-more control this way.
-
-These scripts help automate my process.
+These scripts help automate the release process for [strongbox](https://github.com/ogri-la/strongbox).
 
 ## prep.sh
 
-Prepares a release branch of strongbox for review, updating all the bits and bobs.
+Prepares a release branch of strongbox for review.
+
+1. create a release branch.
+2. update references to static version numbers in the project.clj, readme.md, security.md, etc
+3. updates the changelog, changing references to 'unreleased'
+4. regenerates the pom.xml file
+5. commits it all, pushes to release branch and opens a PR for review with a checklist of things to do.
 
 ## release.sh
 
-Assumes `prep.sh` has been run. 
+Assumes `prep.sh` has been run, the changes reviewed and the PR merged into `master`.
 
-Tags the release on the master branch, creates a release, uploads it to Github and then updates the Arch AUR.
+1. tags the release
+2. creates a GitHub release from the new tag
+3. generates an AppImage
+3. uploads the artifacts to the Github release
+4. updates the Arch AUR
+5. updates Flathub
 
 ## post.sh
 
