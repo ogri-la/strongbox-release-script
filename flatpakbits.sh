@@ -32,12 +32,13 @@ python3 generate-flathub.py "$release" > strongbox-flatpak/la.ogri.strongbox.yml
 # build the flatpak
 (
     cd strongbox-flatpak
-    ./build-flatpak.sh
+    #./build-flatpak.sh
 
-    # updates are good! commit changes and continue
-    #git add metainfo.xml la.ogri.strongbox.yml
-    #git ci -am "metainfo.xml, la.ogri.strongbox.yml, updated"
-    #git push
+    git add metainfo.xml la.ogri.strongbox.yml
+    git ci -am "metainfo.xml, la.ogri.strongbox.yml, updated"
+    git push
+    git tag "$release"
+    git push --tags
 )
 
 # open a PR on Flathub
