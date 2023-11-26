@@ -23,7 +23,7 @@ modules:
       buildsystem: simple
       sources:
         - type: file
-          #path: app.jar
+          path: app.jar
           url: https://github.com/ogri-la/strongbox/releases/download/{release}/strongbox-{release}-standalone.jar
           dest-filename: app.jar
           sha256: {app_jar_sha256}
@@ -33,17 +33,17 @@ modules:
             - /app/jre/bin/java -jar /app/bin/app.jar "$@"
 
         - type: file
-          #path: metainfo.xml
+          path: metainfo.xml
           url: https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/{release}/metainfo.xml
           sha256: {metainfo_xml_sha256}
 
         - type: file
-          #path: strongbox.desktop
+          path: strongbox.desktop
           url: https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/{release}/strongbox.desktop
           sha256: {strongbox_desktop_sha256}
 
         - type: file
-          #path: strongbox.svg
+          path: strongbox.svg
           url: https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/{release}/strongbox.svg
           sha256: {strongbox_svg_sha256}
 
