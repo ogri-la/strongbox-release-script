@@ -53,4 +53,3 @@ modules:
         - install -D -m644 strongbox.svg /app/share/icons/hicolor/scalable/apps/la.ogri.strongbox.svg
         - install -D -m755 autogen.sh /app/bin/strongbox
         - install -D app.jar /app/bin/app.jar
-
