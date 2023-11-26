@@ -84,4 +84,6 @@ fi
 
 . archbits.sh "$release"
 
+. flatpakbits.sh "$release"
+
 echo "done"

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>la.ogri.strongbox</id>
+    <name>Strongbox</name>
+
+    <keywords>
+        <keyword>warcraft</keyword>
+        <keyword>world of warcraft</keyword>
+        <keyword>addon manager</keyword>
+    </keywords>
+
+    <project_license>AGPL-3.0-only</project_license>
+    <metadata_license>CC0-1.0</metadata_license>
+
+    <summary>An addon manager for World of Warcraft</summary>
+    <description>
+        <p>Strongbox is an open source, advertisement free and privacy respecting addon manager for World of Warcraft.</p>
+    </description>
+
+    <launchable type="desktop-id">la.ogri.strongbox.desktop</launchable>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/installed.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/dark-installed.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/installed-fat.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/dark-installed-fat.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/installed-skinny.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/dark-installed-skinny.png</image>
+        </screenshot>
+    </screenshots>
+
+    <url type="homepage">https://github.com/ogri-la/strongbox</url>
+    <url type="bugtracker">https://github.com/ogri-la/strongbox/issues</url>
+    <url type="vcs-browser">https://github.com/ogri-la/strongbox</url>
+
+    <content_rating type="oars-1.0" />
+
+{releases}
+
+</component>

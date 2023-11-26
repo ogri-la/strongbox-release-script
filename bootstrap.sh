@@ -15,7 +15,8 @@ sudo apt-get update -y
 sudo apt-get install -y --no-install-recommends \
     git wget curl openjdk-11-jdk \
     fonts-dejavu libgtk-3-0 libxtst6 \
-    docker.io
+    docker.io \
+    libxml2-utils jq
 
 # why? arch, LetsEncrypt, expired certs, whatever
 sudo apt-get install --reinstall ca-certificates

@@ -1,6 +1,6 @@
 #!/bin/bash
-# updates the pkgbuild, runs makepkg within a container
-# calling after releasing strongbox on github
+# updates the `pkgbuild`, runs `makepkg` within a container.
+# called after releasing Strongbox on Github.
 
 set -eux
 
