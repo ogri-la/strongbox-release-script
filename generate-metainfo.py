@@ -70,7 +70,7 @@ def main(args):
 
     releases_str = "    <releases>\n" + "\n".join(releases) + "    </releases>"
 
-    with open("metainfo_template_path") as fh:
+    with open(metainfo_template_path) as fh:
         metainfo = fh.read().format(releases=releases_str)
         print(metainfo)
 
