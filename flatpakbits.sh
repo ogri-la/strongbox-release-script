@@ -4,13 +4,18 @@
 
 set -eux
 
+release="$1" # "1.2.3"
+
+export GIT_PAGER=cat
+GITHUB_TOKEN=$(cat .github-token)
+export GITHUB_TOKEN
+
 test -f parse-changelog
+test -f gh
 test -d strongbox
 locate --regex 'xmllint$'
 locate --regex 'jq$'
 locate --regex 'python3$'
-
-release="$1" # "1.2.3"
 
 if [ -d strongbox-flatpak ]; then
     (
@@ -32,36 +37,32 @@ python3 generate-flathub.py "$release" > strongbox-flatpak/la.ogri.strongbox.yml
 # build the flatpak
 (
     cd strongbox-flatpak
-    #./build-flatpak.sh
-
-    git add metainfo.xml la.ogri.strongbox.yml
-    git ci -am "metainfo.xml, la.ogri.strongbox.yml, updated"
-    git push
-    git tag "$release"
-    git push --tags
+    git update-index -q --refresh # even touching a tracked file report it as changed unless index is updated
+    if git diff-index --quiet HEAD; then
+        echo "no changes to commit"
+    else
+        #./build-flatpak.sh
+        git add metainfo.xml la.ogri.strongbox.yml
+        git commit -am "metainfo.xml, la.ogri.strongbox.yml, updated"
+        git push
+        git tag "$release"
+        git push --tags
+    fi
 )
 
 # open a PR on Flathub
-if [ -d la.ogri.strongbox ]; then
-    (
-        cd la.ogri.strongbox
-        git reset --hard
-        git checkout master
-        git pull
-    )
-else
-    git clone ssh://git@github.com/flathub/la.ogri.strongbox
-fi
-
+rm -rf la.ogri.strongbox
+git clone ssh://git@github.com/flathub/la.ogri.strongbox
 (
     cd la.ogri.strongbox
-    #git checkout -b "$release"
+    git checkout -b "$release"
     cp ../strongbox-flatpak/la.ogri.strongbox.yml .
-    #git ci -am "$release"
-    #git push --set-upstream origin "$release"
-    #../gh pr create \
-    #    --base "master" \
-    #    --head "$release" \
-    #    --title "$release"
+    git commit -am "$release"
+    git push --set-upstream origin "$release"
+    ../gh pr create \
+        --base "master" \
+        --head "$release" \
+        --body "" \
+        --title "$release"
 )
 
