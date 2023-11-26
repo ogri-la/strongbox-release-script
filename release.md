@@ -9,6 +9,11 @@ review PR
 merge
 ./release <version>
 
+open https://github.com/flathub/la.ogri.strongbox
+review PR
+merge
+wait for buildbot to succeed
+
 exit vagrant
 vagrant halt
 
