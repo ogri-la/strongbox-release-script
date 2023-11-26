@@ -10,13 +10,20 @@ set -ex
     printf 'Host github.com\n  HostName github.com\n  IdentityFile ~/.ssh/me.pem' > config
 )
 
+sudo apt update
+
+# Flatpak ppa: https://launchpad.net/~flatpak/+archive/ubuntu/stable
+sudo add-apt-repository ppa:flatpak/stable -y
+sudo apt update
+
 export DEBIAN_FRONTEND=noninteractive # no ncurses prompts
 sudo apt-get update -y
 sudo apt-get install -y --no-install-recommends \
     git wget curl openjdk-11-jdk \
     fonts-dejavu libgtk-3-0 libxtst6 \
     docker.io \
-    libxml2-utils jq
+    libxml2-utils jq \
+    flatpak flatpak-builder
 
 # why? arch, LetsEncrypt, expired certs, whatever
 sudo apt-get install --reinstall ca-certificates
