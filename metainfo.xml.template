@@ -12,9 +12,22 @@
     <project_license>AGPL-3.0-only</project_license>
     <metadata_license>CC0-1.0</metadata_license>
 
-    <summary>An addon manager for World of Warcraft</summary>
+    <summary>Addon manager for World of Warcraft</summary>
     <description>
-        <p>Strongbox is an open source, advertisement free and privacy respecting addon manager for World of Warcraft.</p>
+        <p>Strongbox is an <em>open source</em>, <em>advertisement free</em> and <em>privacy respecting</em> addon manager for World of Warcraft.</p>
+        <p>Features:</p>
+        <ul>
+            <li>install addons from <em>wowinterface.com</em>, <em>Github</em> and <em>Gitlab</em></li>
+            <li>searchable catalogue of thousands of addons</li>
+            <li>classic and retail addon support</li>
+            <li>bulk update</li>
+            <li>bulk import and export</li>
+            <li>safeguards against bad addons</li>
+            <li>ignore addons to prevent accidental changes</li>
+            <li>pin addons to a specific version</li>
+            <li>install previous versions of an addon</li>
+        </ul>
+        <p>... and more: https://ogri.la</p>
     </description>
 
     <launchable type="desktop-id">la.ogri.strongbox.desktop</launchable>
