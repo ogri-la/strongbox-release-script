@@ -13,24 +13,54 @@ locate --regex 'python3$'
 release="$1" # "1.2.3"
 
 if [ -d strongbox-flatpak ]; then
-    git reset --hard
-    git checkout master
-    git pull
+    (
+        cd strongbox-flatpak
+        git reset --hard
+        git checkout master
+        git pull
+    )
 else
     git clone ssh://git@github.com/ogri-la/strongbox-flatpak
-fi
-
-if [ -d la.ogri.strongbox ]; then
-    git reset --hard
-    git checkout master
-    git pull
-else
-    git clone ssh://git@github.com/flathub/la.ogri.strongbox
 fi
 
 # update the list of releases in the metainfo.xml
 python3 generate-metainfo.py | xmllint --format - > strongbox-flatpak/metainfo.xml
 
 # update the checksums of the flathub description
-python3 generate-flathub.py strongbox-flatpak/la.ogri.strongbox.yml.template > strongbox-flatpak/la.ogri.strongbox.yml.template
+python3 generate-flathub.py "$release" > strongbox-flatpak/la.ogri.strongbox.yml
+
+# build the flatpak
+(
+    cd strongbox-flatpak
+    ./build-flatpak.sh
+
+    # updates are good! commit changes and continue
+    #git add metainfo.xml la.ogri.strongbox.yml
+    #git ci -am "metainfo.xml, la.ogri.strongbox.yml, updated"
+    #git push
+)
+
+# open a PR on Flathub
+if [ -d la.ogri.strongbox ]; then
+    (
+        cd la.ogri.strongbox
+        git reset --hard
+        git checkout master
+        git pull
+    )
+else
+    git clone ssh://git@github.com/flathub/la.ogri.strongbox
+fi
+
+(
+    cd la.ogri.strongbox
+    #git checkout -b "$release"
+    cp ../strongbox-flatpak/la.ogri.strongbox.yml .
+    #git ci -am "$release"
+    #git push --set-upstream origin "$release"
+    #../gh pr create \
+    #    --base "master" \
+    #    --head "$release" \
+    #    --title "$release"
+)
 
