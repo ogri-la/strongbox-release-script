@@ -27,28 +27,27 @@
             <li>pin addons to a specific version</li>
             <li>install previous versions of an addon</li>
         </ul>
-        <p>... and more: https://ogri.la</p>
     </description>
 
     <launchable type="desktop-id">la.ogri.strongbox.desktop</launchable>
     <screenshots>
         <screenshot type="default">
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/installed.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/{release}/screenshots/installed.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/dark-installed.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/{release}/screenshots/dark-installed.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/installed-fat.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/{release}/screenshots/installed-fat.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/dark-installed-fat.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/{release}/screenshots/dark-installed-fat.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/installed-skinny.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/{release}/screenshots/installed-skinny.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/0.0.3/screenshots/dark-installed-skinny.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/{release}/screenshots/dark-installed-skinny.png</image>
         </screenshot>
     </screenshots>
 

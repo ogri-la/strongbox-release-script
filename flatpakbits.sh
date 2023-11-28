@@ -29,7 +29,7 @@ else
 fi
 
 # update the list of releases in the metainfo.xml
-python3 generate-metainfo.py | xmllint --format - > strongbox-flatpak/metainfo.xml
+python3 generate-metainfo.py "$release" | xmllint --format - > strongbox-flatpak/metainfo.xml
 
 # update the checksums of the flathub description
 python3 generate-flathub.py "$release" > strongbox-flatpak/la.ogri.strongbox.yml

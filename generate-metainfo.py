@@ -37,8 +37,7 @@ def group_by(grouper, rows):
 
 
 def main(args):
-    #metainfo_template_path = os.path.abspath(args[0])
-    #changelog_path = os.path.abspath(args[1])
+    release = args[0]
     metainfo_template_path = "metainfo.xml.template"
     changelog_path = "strongbox/CHANGELOG.md"
 
@@ -68,10 +67,12 @@ def main(args):
             release_body_template_list.append(RELEASE_BODY_TEMPLATE % (header, "\n                    ".join(li_list)))
         releases.append(RELEASE_TEMPLATE % (version, dt, "\n".join(release_body_template_list)))
 
-    releases_str = "    <releases>\n" + "\n".join(releases) + "    </releases>"
-
+    context = {
+        "release": release,
+        "releases_str": "    <releases>\n" + "\n".join(releases) + "    </releases>",
+    }
     with open(metainfo_template_path) as fh:
-        metainfo = fh.read().format(releases=releases_str)
+        metainfo = fh.read().format(**context)
         print(metainfo)
 
 if __name__ == '__main__':
