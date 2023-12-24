@@ -3,7 +3,7 @@
 set -eu
 
 release="$1" # "1.2.3"
-path_to_strongbox="../strongbox"
+path_to_strongbox=$(realpath strongbox)
 
 # strongbox is required
 test -d "$path_to_strongbox"
