@@ -64,15 +64,16 @@ fi
         --title "$release" \
         --notes "$(../parse-changelog CHANGELOG.md "$release")"
     echo
-
-    echo "--- building release artefacts ---"
-    ./artefacts.sh "$release"
-    echo
-    
-    echo "--- uploading release ---"
-    ../gh release upload "$release" release/*
-    echo
 )
+
+echo "--- building release artefacts ---"
+./artefacts.sh "$release"
+echo
+
+echo "--- uploading release ---"
+./gh release upload "$release" release/* -R ogri-la/strongbox
+echo
+
 
 . archbits.sh "$release"
 
