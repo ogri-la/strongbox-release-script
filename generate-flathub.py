@@ -14,8 +14,8 @@ def main(args):
     release = args[0].strip()
     necessary_file_list = [
         "la.ogri.strongbox.yml.template",
-        "strongbox/release/strongbox-%s-standalone.jar" % release,
-        "strongbox/release/strongbox-%s-standalone.jar.sha256" % release,
+        "release/strongbox-%s-standalone.jar" % release,
+        "release/strongbox-%s-standalone.jar.sha256" % release,
         "strongbox-flatpak/metainfo.xml",
         "strongbox-flatpak/strongbox.desktop",
         "strongbox-flatpak/strongbox.svg",
@@ -36,13 +36,13 @@ def main(args):
 
     context = {
         "release": release,
-        "app_jar_sha256": sha256("strongbox/release/strongbox-%s-standalone.jar" % release),
+        "app_jar_sha256": sha256("release/strongbox-%s-standalone.jar" % release),
         "metainfo_xml_sha256": sha256("strongbox-flatpak/metainfo.xml"),
         "strongbox_desktop_sha256": sha256("strongbox-flatpak/strongbox.desktop"),
         "strongbox_svg_sha256": sha256("strongbox-flatpak/strongbox.svg"),
     }
 
-    sum1 = open("strongbox/release/strongbox-%s-standalone.jar.sha256" % release).read().split(' ')[0] # file is: <sum>  <filename>
+    sum1 = open("release/strongbox-%s-standalone.jar.sha256" % release).read().split(' ')[0] # file is: <sum>  <filename>
     sum2 = context["app_jar_sha256"]
     assert sum1 == sum2, "sums don't match: %r and %r" % (sum1, sum2)
 
