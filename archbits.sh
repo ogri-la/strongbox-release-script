@@ -24,7 +24,7 @@ git clone ssh://aur@aur.archlinux.org/strongbox.git strongbox-pkgbuild
     sed --in-place --regexp-extended "s/pkgver=.+/pkgver=$release/" PKGBUILD
     sed --in-place --regexp-extended "s/pkgrel=.+/pkgrel=1/" PKGBUILD
 
-    strongbox_sha256=$(cut -d " " -f 1 ../strongbox/release/strongbox.sha256)
+    strongbox_sha256=$(cut -d " " -f 1 "../strongbox/release/strongbox-$release-x86_64.AppImage.sha256")
     strongbox_desktop_sha256=$(sha256sum strongbox.desktop | cut -d " " -f 1)
     sed --in-place --regexp-extended "s/strongbox_sha256=.+/strongbox_sha256=\"$strongbox_sha256\"/" PKGBUILD
     sed --in-place --regexp-extended "s/strongbox_desktop_sha256=.+/strongbox_desktop_sha256=\"$strongbox_desktop_sha256\"/" PKGBUILD
