@@ -65,16 +65,8 @@ fi
         --notes "$(../parse-changelog CHANGELOG.md "$release")"
     echo
 
-    echo "--- building linux release ---"
-    ./build-linux-image.sh
-    mkdir ./release/
-    mv ./strongbox ./target/*-standalone.jar ./release/
-    rm -rf ./target/
-    (
-        cd release
-        sha256sum strongbox > strongbox.sha256
-        sha256sum "strongbox-$release-standalone.jar" > "strongbox-$release-standalone.jar.sha256"
-    )
+    echo "--- building release artefacts ---"
+    ./artefacts.sh "$release"
     echo
     
     echo "--- uploading release ---"
