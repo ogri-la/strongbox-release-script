@@ -3,9 +3,11 @@
 set -eu
 
 release="$1" # "1.2.3"
+path_to_strongbox="../strongbox"
 
 # strongbox is required
-test -d strongbox
+test -d "$path_to_strongbox"
+
 
 rm -rf ./release
 mkdir ./release
@@ -21,12 +23,12 @@ else
     )
 fi
 
-cp strongbox-appimage/build-appimage.sh ./
-./build-appimage.sh
-rm ./build-appimage.sh
-
-mv ./strongbox.appimage "./release/strongbox-$release-x86_64.AppImage" # "strongbox.appimage" => "strongbox-7.0.1-x86_64.AppImage"
-mv "./strongbox/target/strongbox-$release-standalone.jar" ./release/
+(
+    cd strongbox-appimage
+    ./build-appimage.sh "$path_to_strongbox"
+    mv ./strongbox.appimage "../release/strongbox-$release-x86_64.AppImage" # "strongbox.appimage" => "strongbox-7.0.1-x86_64.AppImage"
+    mv "$path_to_strongbox/target/strongbox-$release-standalone.jar" ../release/
+)
 
 (
     cd release
