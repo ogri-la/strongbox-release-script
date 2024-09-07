@@ -17,7 +17,7 @@ wait for buildbot to succeed
 exit vagrant
 vagrant halt
 
-cd ../strongbox
+cd /path/to/strongbox
 git checkout master
 git pull
 git checkout develop
