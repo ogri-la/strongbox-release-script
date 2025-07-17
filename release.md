@@ -7,7 +7,7 @@ git pull
 ./prep.sh <version>
 review PR
 merge
-./release <version>
+./release.sh <version>
 
 open https://github.com/flathub/la.ogri.strongbox
 review PR

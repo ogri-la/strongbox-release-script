@@ -19,7 +19,7 @@ sudo apt update
 export DEBIAN_FRONTEND=noninteractive # no ncurses prompts
 sudo apt-get update -y
 sudo apt-get install -y --no-install-recommends \
-    git wget curl openjdk-11-jdk \
+    git wget curl openjdk-17-jdk \
     fonts-dejavu libgtk-3-0 libxtst6 \
     docker.io \
     libxml2-utils jq \
