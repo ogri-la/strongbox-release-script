@@ -12,6 +12,7 @@ finish-args:
     - "--share=network"
     - "--device=dri"
     - "--filesystem=host"
+    - "--share=ipc"
 
 modules:
     - name: openjdk

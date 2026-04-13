@@ -28,3 +28,4 @@ truncate TODO
 update CHANGELOG with new sections from bottom
 update project.clj with incremented version and "-unreleased"
 update this doc with anything new
+
