@@ -30,23 +30,23 @@ modules:
         - install -D app.jar /app/bin/app.jar
       sources:
         - type: file
-          url: https://github.com/ogri-la/strongbox/releases/download/7.7.0/strongbox-7.7.0-standalone.jar
+          url: https://github.com/ogri-la/strongbox/releases/download/7.8.0/strongbox-7.8.0-standalone.jar
           dest-filename: app.jar
-          sha256: 498d9ff11f63022f8a2b54e309e283799c744574b42fd17aa229c34c648dcc8f
+          sha256: 72a5203e843fb6655825b17b18c4eb6e8b5b0106452e26bb2cd55a04593d25b7
 
         - type: script
           commands:
             - /app/jre/bin/java -jar /app/bin/app.jar "$@"
 
         - type: file
-          url: https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/7.7.0/metainfo.xml
-          sha256: 71a43510a26658100fc02bd4b75bf471cdaab263a92b5525d36c04d6d28b9612
+          url: https://raw.githubusercontent.com/ogri-la/strongbox-release-script/7.8.0/dist/flatpak/metainfo.xml
+          sha256: 8337769e80f0c5cd9a49c3ddc0fe6c8662e9f1868e6d0052873385fc3b60bf06
 
         - type: file
-          url: https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/7.7.0/strongbox.desktop
-          sha256: 960bcf565329cfd9f41f0e744a43071048e340578e04495b5c3d617a2f8408e5
+          url: https://raw.githubusercontent.com/ogri-la/strongbox-release-script/7.8.0/dist/flatpak/strongbox.desktop
+          sha256: 130d35e55551d3f49a9145eefc039b241cdb73944562d4f77ceb1e8890e5211d
 
         - type: file
-          url: https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/7.7.0/strongbox.svg
-          sha256: e8d68fd32e96834d12940df27c2fd4c05fa303c1473e8f50b6a3a93f283bc2fc
+          url: https://raw.githubusercontent.com/ogri-la/strongbox-release-script/7.8.0/dist/flatpak/strongbox.svg
+          sha256: 8dfc560af5dd0baf53aff6c3fd6ce2b9f149923b1f0dd1a20004a18b8ff70f50
 

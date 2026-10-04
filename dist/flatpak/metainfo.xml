@@ -1,0 +1,1758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>la.ogri.strongbox</id>
+    <name>Strongbox</name>
+    <developer id="la.ogri">
+        <name>Torkus</name>
+    </developer>
+
+    <keywords>
+        <keyword>warcraft</keyword>
+        <keyword>world of warcraft</keyword>
+        <keyword>addon manager</keyword>
+    </keywords>
+
+    <project_license>AGPL-3.0-only</project_license>
+    <metadata_license>CC0-1.0</metadata_license>
+
+    <summary>Addon manager for World of Warcraft</summary>
+    <description>
+        <p>Strongbox is an open source, advertisement free and privacy respecting addon manager for World of Warcraft.</p>
+        <p>Features:</p>
+        <ul>
+            <li>install addons from wowinterface.com, Github and Gitlab</li>
+            <li>searchable catalogue of thousands of addons</li>
+            <li>classic and retail addon support</li>
+            <li>bulk update</li>
+            <li>bulk import and export</li>
+            <li>safeguards against bad addons</li>
+            <li>ignore addons to prevent accidental changes</li>
+            <li>pin addons to a specific version</li>
+            <li>install previous versions of an addon</li>
+        </ul>
+    </description>
+
+    <launchable type="desktop-id">la.ogri.strongbox.desktop</launchable>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-installed.png</image>
+            <caption>Strongbox main window, standard width with default columns.</caption>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-dark-installed.png</image>
+            <caption>Strongbox main window, standard width with default columns (dark).</caption>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-installed-fat.png</image>
+            <caption>Strongbox main window, wide width with many columns.</caption>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-dark-installed-fat.png</image>
+            <caption>Strongbox main window, wide width with many columns (dark).</caption>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-installed-skinny.png</image>
+            <caption>Strongbox main window, narrow width with few columns.</caption>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-dark-installed-skinny.png</image>
+            <caption>Strongbox main window, narrow width with few columns (dark).</caption>
+        </screenshot>
+    </screenshots>
+
+    <url type="homepage">https://github.com/ogri-la/strongbox</url>
+    <url type="bugtracker">https://github.com/ogri-la/strongbox/issues</url>
+    <url type="vcs-browser">https://github.com/ogri-la/strongbox</url>
+
+    <content_rating type="oars-1.0" />
+
+    <releases>
+
+        <release version="7.8.0" date="2026-10-04">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>Support for WoW 'Forever'</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>URLs are parsed more strictly, malformed URLs such as `http://` are no longer accepted</li>
+                    <li>Linting now covers the whole project on every run, not just recently modified files</li>
+                    <li>README game track priorities updated with Mists and Forever</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>Interface versions with a two digit minor or patch version are converted correctly</li>
+                    <li>The 'no release found' warning now names the addon host correctly when 'Strict' is unchecked</li>
+                    <li>Deprecation warnings from newer JDK and JavaFX versions</li>
+                    <li>Linting no longer hangs after a run with no warnings</li>
+                    <li>Tests and linting no longer conflict with an X display already in use</li>
+                    <li>A partially drawn log pane no longer appears over the installed addons after resizing the window</li>
+                    <li>Remaining non-determinism in test `utils_test/with-lock--contention`</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="7.7.0" date="2026-04-13">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>Support for new retail release 'Midnight'</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>Semver sorting now considers pre-release and build tokens</li>
+                    <li>Pre-release versions of Strongbox are now ignored when considering if Strongbox is updateable</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>Non-deterministic test `utils_test/with-lock--contention`</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="7.6.0" date="2025-07-16">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>support for classic Mists of Pandaria</li>
+                    <li>support for 'Standard' suffixed .toc file (retail)</li>
+                    <li>added 'clean' to manage.sh script to remove any temporary files</li>
+                    <li>added 'build-docker' to manage.sh script to run the tests in an environment similar to CI</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>bumped versions of latest WoW releases</li>
+                    <li>minimum version of JDK bumped from 11 to 17 to incorporate bug fixes in newer releases of OpenJFX 22</li>
+                    <li>bumped dependencies in general</li>
+                    <li>changes to CI to move off of legacy/unsupported container images</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>issue #440 "JNI error when launching on Endeavouros"</li>
+                    <li>issue #441 "Crash on new Mac OS and JRE install"</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>some old Docker containers used for debugging CI</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="7.5.0" date="2024-09-07">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>added another heuristic for guessing which asset in a Github release supports retail.</li>
+                    <li>error handling for a few cases where uncaught exceptions were being swallowed.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>installing an addon by file now overwrites/updates ignored addons and unpins pinned addons.</li>
+                    <li>updated internal constants for The War Within.</li>
+                    <li>updated internal constant for the date of the previous expansion.</li>
+                    <li>trimmed the '(Flatpak)' from the 'Strongbox (Flatpak)' on the `.desktop` files distributed by Flatpak.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>fixed bug in emergency 'short' catalogue generation.</li>
+                    <li>fixed bug where installing a file manually would bypass ignored and pinned addon checks.</li>
+                    <li>fixed bug where ignore check bypassed on ungrouped/single directory addons.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="7.4.0" date="2024-07-19">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>added support for parsing multiple interface version values from .toc file.</li>
+                    <li>added entries to the known patch list for the recent major Dragonflight patches and The War Within.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>the WoW column in the GUI now supports displaying multiple game versions (like 8.0, 9.0, 10.0).</li>
+                    <li>the raw data GUI widget in the addon details pane now supports displaying multiple interface versions.</li>
+                    <li>replaced references to the old wiki with the new wiki (warcraft.wiki.gg).</li>
+                    <li>bumped dependencies.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>fixed a typo in a field name in the import/export logic.</li>
+                    <li>fixed a bug in the interface-version => game-version logic where 110000 was returned as '1.0.000' instead of '11.0.0'.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>removed curseforge and tukui test fixtures and the fetching of test fixtures.</li>
+                    <li>removed support for 'release labels' attached to addon source updates.</li>
+                    <li>removed more curseforge and tukui logic that was disabled many releases ago.</li>
+                    <li>removed support for interface versions in .toc files containing non-numeric values.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="7.3.0" date="2024-04-23">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>added support for Cataclysm Classic.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>dependencies bumped to latest versions.</li>
+                    <li>game track priority when 'strict' is off now has a proper and consistent strategy.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>bumps Clojure from 1.10 to 1.11.2 to fix CVE-2024-22871</li>
+                    <li>an Arch Linux AUR bug introduced with pacman 6.1 that stripped the binary down to nothing.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="7.2.0" date="2023-12-24">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>`x-website` Github URLs in `.toc` files are now treated as a Github source that an addon can be switched to.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>moved AppImage building to `ogri-la/strongbox-appimage`.</li>
+                    <li>consolidated all the `.sh` into a single `manage.sh` script.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>fixed bug preventing classic Wrath `.toc` from being detected and loaded.</li>
+                    <li>fixed bug in catalogue location spec where a value that should have been validating as a URL was not.</li>
+                    <li>removed `x-tukui-id` source detection in `.toc` files. Tukui no longer hosts addons so these can't be used.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>removed `release.sh` as it had been unused for several years.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="7.1.0" date="2023-11-26">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>added checkbox to bottom of search tab that will toggle search results sampling when search results are unfiltered.</li>
+                    <li>added patch tooltips for Dragonflight 10.1 and 10.2</li>
+                    <li>added support for the `NO_COLOR` environment variable.</li>
+                    <li>added new command line action `print-config` that prints the final config and exits.</li>
+                    <li>added new information captured from the environment when using `--debug` or `--action print-config`.</li>
+                    <li>added plain-text and JSON views of the raw addon data to the 'raw data' widget on the addon detail tab.</li>
+                    <li>added new preference 'check for update' that toggles checking for an update to Strongbox on startup (default is `true`).</li>
+                    <li>added new command line flag `--update-check` and it's complement `--no-update-check` that toggles update checks.</li>
+                    <li>added Flatpak distribution hosted by Flathub</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>bumped JavaFX dependencies from 17.x to 19.x.</li>
+                    <li>removed the fixed widths on the 'updated' and 'downloads' columns in the search pane.</li>
+                    <li>some `info` level logging has been dropped to `debug` to reduce console noise.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>tag buttons in search pane are now centred vertically.</li>
+                    <li>selecting hosts in search pane no longer samples results.</li>
+                    <li>'interface version' was being treated as an integer and being localised in the raw data widget.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="7.0.0" date="2023-06-11">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>added 'stats' that serves to centralise a bunch of numbers used internally that might be interesting to the user.</li>
+                    <li>Github rate limit information is now fetched as part of the stats.</li>
+                    <li>manually refreshing the user catalogue will now switch to the `log` pane before doing so.</li>
+                    <li>new (opt-in) preference to automaticaly refresh the user-catalogue every 28 days.</li>
+                    <li>added a "clear" button to the addons search that removes all search filters, including search terms.</li>
+                    <li>added new column for installed addons "starred" that will add an installed addon to the 'user-catalogue'.</li>
+                    <li>new column for installed addons "size" with the total size of the addon on disk, including any grouped addons.</li>
+                    <li>`user.clj`, where the REPL will take you by default during development.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>the main window is now always split with the bottom pane hidden by default.</li>
+                    <li>clicking the status bar buttons to open the bottom pane is now much quicker.</li>
+                    <li>refreshing the user-catalogue now checks imported/starred addons against the full catalogue before checking online.</li>
+                    <li>menu labels for the installed addons table columns have been tweaked (see `View -> Columns`)</li>
+                    <li>the "fat" column profile now uses the "installed" and "available" columns rather than the combined "version" column.</li>
+                    <li>the "fat" column profile includes the new "starred" and "size" columns.</li>
+                    <li>`jlink compress=2` changed to `jlink compress=1` during the building of the linux AppImage.</li>
+                    <li>replaced the compressed, static, "emergency" catalogue with a simple JSON string.</li>
+                    <li>bumped dependencies.</li>
+                    <li>some dependencies used for development are no longer bundled during release.</li>
+                    <li>strongbox release data will only be downloaded once the app has finished loading.</li>
+                    <li>strongbox release data will only be downloaded once per-session.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>search tab filter buttons are now a uniform height.</li>
+                    <li>`key` column in the addon detail "raw data" widget is now wide enough for the text "supported game tracks".</li>
+                    <li>`updated` column in the installed addon tab is now wide enough for the text "12 months ago".</li>
+                    <li>possible cache stampede fetching strongbox release info. A lock is now acquired to ensure checks happen sequentially.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>Tukui support. Tukui addons are:</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="6.1.2" date="2023-05-16">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>issue #402, fixed a freezing bug in the search results, introduced in 5.1.0 (2022-03-02).</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="6.1.1" date="2023-05-07">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>bad or missing 'content-length' HTTP header fields are now handled without errors.</li>
+                    <li>the "All" patch level returned by Tukui is now supported when checking the updated details of an addon.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="6.1.0" date="2023-03-19">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>filtering search results by tag can now be switched between inclusive ('any of', default) and exclusive ('all of').</li>
+                    <li>embedded font for glyphs used in the uber and star buttons for systems running with minimal fonts.</li>
+                    <li>an app launcher to desktop environments that support them.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>search results filtered by tag are no longer sampled when no search input is available.</li>
+                    <li>glyphs used for the uber and star buttons switched to their close equivalents in the new embedded font</li>
+                    <li>moved some files used for building the AppImage from the root into a directory called `AppImage`.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>page >1 of search results that were then filtered further may have displayed the 'mascot' screen (ᕙ[°▿°]ᕗ)</li>
+                    <li>characters in multi-line messages in the notice logger no longer get their descenders ('y', 'g', 'p', etc) truncated.</li>
+                    <li>ignored addons in the addon detail pane now display mutual dependencies (if any).</li>
+                    <li>'WoW' column text was black with a dark background in dark mode, making the value illegible.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="6.0.0" date="2022-11-10">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>support for six digit interface versions.</li>
+                    <li>'Dragonflight' tooltip for 10.0 addons.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>the slugify function used on a toc's 'title' value switched to the same one used when building catalogues.</li>
+                    <li>reviewed a lot of code, lots of very minor shuffling and tweaks that won't affect the user at all.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>fixed an issue with WotLK toc data having no priority in non-WotLK game tracks.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>removed support for building catalogues.</li>
+                    <li>removed the command line actions:</li>
+                    <li>removed support for reading version 1 catalogues built using `wowman`</li>
+                    <li>removed the 'tag' logic used to normalise and map categories between addons and addon hosts.</li>
+                    <li>removed dependencies `org.clojure/data.csv` and `enlive`.</li>
+                    <li>removed support for finding `wowman`-era config files.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="5.4.1" date="2022-09-11">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>support for Tukui's WotLK addons</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>inconsistent 'source' column widths and resizing behaviour in the search addons tab.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>bug with selecting the 'WotLK Classic' game track in strict mode that would empty the list of installed addons.</li>
+                    <li>minor bug with an error message repeated N times when installing an addon and the selected game track isn't supported</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="5.4.0" date="2022-08-21">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>support for WotLK Classic.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>the WoW column tooltip occasionally received a map of data instead of the addon's supported WoW version during rendering.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="5.3.0" date="2022-07-09">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>multiple addons can now be selected and installed from `File -> Install addon from file`.</li>
+                    <li>tooltips for values in the 'WoW' column are now the long-form patch name.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>addons that are completely replaced by another addon are now uninstalled first rather than creating a 'mutual dependency' (overwritten in-place with a reference).</li>
+                    <li>data from invalid .toc files is now discarded.</li>
+                    <li>`ctrl-f5` now clears the http cache and then does a full refresh, including a reload of the addons from the filesystem.</li>
+                    <li>some warnings have been made less obscure or dropped down to debug statements.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="5.2.0" date="2022-06-04">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>added 'scrape-github-catalogue' to the list of command line actions.</li>
+                    <li>added 'Browse addon directory' to the 'File' menu that opens your configured file browser to the selected addon directory.</li>
+                    <li>added ability to install addons from zip files, bypassing catalogue matching.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>bumped JavaFX from 15.0.1 to 17.0.2</li>
+                    <li>addons are now installed and uninstalled in parallel.</li>
+                    <li>the warning message 'addon "Foo" is overwriting "Bar"' when creating a mutual dependency has been changed to the more helpful '"Foo" (1.2.3) replaced directory "Bar/" of addon "Baz" (3.4.5)'.</li>
+                    <li>'version' column on installed addons tab now emboldens it's value when update available.</li>
+                    <li>'updated' column on the search tab is now 'friendly' formatted using a relative time label.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>fixed handling for empty game track lists in the github csv catalogue.</li>
+                    <li>fixed bug where the GUI would look for parallel jobs matching a complex ID when jobs with a simple ID were present.</li>
+                    <li>fixed placeholder text size in addon detail pane for addons with no mutual dependency data (like search results).</li>
+                    <li>fixed button text in addon detail pane from "install" to "re-install" for releases matching currently installed version.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="5.1.0" date="2022-03-01">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>'star' column to the search tab. Starring an addon will add it to your user-catalogue.</li>
+                    <li>'star' button to the search pane that will filter addons to those in your user-catalogue.</li>
+                    <li>'addon host' multi-checkbox field to the search tab, allowing you to select which hosts to see addons from.</li>
+                    <li>clickable tags in the 'tags' column that filter search results.</li>
+                    <li>gui, search, count of addons selected to the 'install selected' button.</li>
+                    <li>gui, addon-details, a 'mutual dependencies' pane to show which addons the current addon is overwriting.</li>
+                    <li>gui, addon-details, the installed and latest releases are now highlighted in the 'releases' pane.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>core, the user-catalogue is now part of application state rather than read from file as needed.</li>
+                    <li>gui, search, 'install selected' button moved to the left of the search field and disabled if no addons selected.</li>
+                    <li>gui, addon-details, switched from a three-pane layout to a two-pane layout with navigation.</li>
+                    <li>gui, styling, some of the early, complex, styling has been minimised and contained to just the install and search tabs.</li>
+                    <li>gui, addon-details, very minor, "Stop ignoring" label changed to "Unignore" to conserve horizontal space.</li>
+                    <li>gui, installed addons, 'update all' button no longer does anything if no addons need updates.</li>
+                    <li>gui, the 'split' button (bottom right) is now a proper 'toggle' button with indent and outdent styling.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>gui, addon-details, very minor bug that would sometimes result in two seemingly identical addon tabs being open.</li>
+                    <li>gui, addon-details, the most recent release would always be missing from the 'releases' pane.</li>
+                    <li>gui, installed addons, removing all columns will now present with you a helpful message again and a button to reset columns.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>the 'random' button. room was needed for the new filters.</li>
+                    <li>the 'wrote: /path/to/user-catalogue.json' message when the user catalogue is updated.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="5.0.0" date="2022-01-31">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>column presets 'default', 'skinny' and 'fat'.</li>
+                    <li>support for `X-Github` fields in the `.toc` file.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>replaced 'View -> Columns -> Reset to defaults' with the 'default' column preset.</li>
+                    <li>github catalogue tweaks to support latest version of layday's `github-wow-addon-catalogue`.</li>
+                    <li>column preferences in the config file are now upgraded to the new default column set.</li>
+                    <li>minor, errors/warning/info messages that appeared across multiple messages are now just one message.</li>
+                    <li>curseforge February deprecation notice is now the definitive "no longer supported".</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>minor, clicking an already selected source in an addon's 'Source' context menu no longer triggers an update.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>Curseforge support. Curseforge addons are:</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.9.1" date="2022-01-20">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>github, regression, pre-releases and drafts are now removed from consideration when looking for updates.</li>
+                    <li>addon, regression, the 'updatable?' check now correctly handles addons with multiple .toc files.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.9.0" date="2022-01-02">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>a github catalogue.</li>
+                    <li>source switching.</li>
+                    <li>'find similar' context menu option. It searches the catalogue for addons that share the addon's name.</li>
+                    <li>a warning for curseforge addons that updates will stop Feb 1st 2022 and directions on how to migrate.</li>
+                    <li>new dependency `org.clojure/data.csv` for parsing the Github catalogue.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>the set of catalogues in your `config.json` file will be upgraded to include the new Github catalogue</li>
+                    <li>curseforge addons missing from the currently selected catalogue can no longer be checked for updates.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>http backoff regression on timeout errors.</li>
+                    <li>minor issue causing cramped multi-line messages in the notice logger.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.8.0" date="2021-12-12">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>Gitlab support.</li>
+                    <li>multi-toc support.</li>
+                    <li>`release.json` support for Github and Gitlab.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>the 'source-id' column in the GUI has had it's max width removed.</li>
+                    <li>Github addons are no longer assumed to be for retail/mainline unless released prior to the release of Classic.</li>
+                    <li>Github addons will now do extra checks to determine game tracks for the latest release, on initial import and during the user-catalogue refresh.</li>
+                    <li>http downloads will no longer be re-attempted on client (4xx) errors, server (5xx) and connection errors only.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>a minor bug in translating an interface version (10100) to a game track ("classic").</li>
+                    <li>stability improvements to the 'refresh user catalogue' feature.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.7.0" date="2021-10-31">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>expanding rows for grouped addons.</li>
+                    <li>columns in the GUI can now be toggled on and off and reset back to their defaults.</li>
+                    <li>new columns 'source-id', 'tags', a combined 'version' column, 'browse local files' and friendly 'created' and 'updated' columns.</li>
+                    <li>handling for hosts that are refusing connections rather than accepting connections but then timing out.</li>
+                    <li>most http requests now make two more attempts to download html/json before giving up.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>status button now has 'ignored' (empty circle) and 'pinned' (filled circle) icons instead of nothing and a tick respectively.</li>
+                    <li>connection timeouts are now reduced from 8sec to 5sec.</li>
+                    <li>minor, `File -> Export Github addon list` renamed `File -> Export the user-catalogue`.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>ignored addons had an incorrect 'updated' date.</li>
+                    <li>context menu not refreshed after performing an action and then immediately right clicking the addon again.</li>
+                    <li>connection timeout handling (introduced `4.3.0`) has never worked outside of test conditions.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>the inability to resize certain columns. All columns can be resized now, although some still have maximum widths.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.6.0" date="2021-10-01">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>a `--version` parameter that prints the name of the app and it's current version.</li>
+                    <li>an 'emergency' catalogue that strongbox can use if the remote catalogue is not available.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>bumped dependencies</li>
+                    <li>searching for addons is now much *much* faster.</li>
+                    <li>searching now searches within the addon name rather than from the beginning of the name.</li>
+                    <li>catalogue is no longer validated when reading the catalogue JSON file.</li>
+                    <li>addon maps no longer have their keys ordered on reading.</li>
+                    <li>gui, context menu options disabled when no addons selected.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>case where selected addons persist across addon directory changes.</li>
+                    <li>warning on startup about `cat` already refering to `clojure.core/cat`.</li>
+                    <li>case where a wowinterface addon pending approval couldn't be downloaded because of a missing query parameter.</li>
+                    <li>regression where a bad addon downloaded in parallel would still be passed to the 'install addon' operation.</li>
+                    <li>typo causing a failure to properly validate the 'created-date' in the catalogue.</li>
+                    <li>attempting to check an addon from an unknown host would cause an unhelpful error.</li>
+                    <li>attempting to install an addon with an unknown game track would cause an error.</li>
+                    <li>installing an addon in certain circumstances assumed a successful check for updates had been made.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>the `--profile` command line option and the scaffolding around integrating it with the tests and test coverage.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.5.0" date="2021-09-05">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>better error handling when no network connection is available.</li>
+                    <li>a warning when the update available is from a different addon host.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>addons that fail to match against the catalogue but have matched against a catalogue previously can now be updated.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.4.1" date="2021-08-19">
+            <description>
+                
+                <p>Changed</p>
+                <ul>
+                    <li>status bar catalogue count is now localised.</li>
+                    <li>the 404 error displayed from Curseforge is now more helpful than simply 'not found'.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>fixed bug preventing installation of addons from the search pane.</li>
+                    <li>sorting by 'downloads' in search now works as expected.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.4.0" date="2021-08-17">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>the operations 'check for update' and 'download addon' now run in parallel.</li>
+                    <li>a progress bar that (temporarily) replaces the status button when parallel operations are happening.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>installing a specific addon version no longer blocks the GUI while the addon is downloaded and installed.</li>
+                    <li>cache duration of textual files is now 1hr rather than 24hrs.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>fetching strongbox release data while over (GitHub) quota no longer results in an infinite log loop.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>row background colour for 'unsteady' addons (updating/downloading/being modified) has been removed.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.3.0" date="2021-07-01">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>addons from Curseforge, wowinterface.com, Tukui and Github can now be imported from URLs rather than the catalogue.</li>
+                    <li>Github authentication using Github Personal Access Tokens</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>`Import addon from Github` from the `File` menu has been renamed `Import addon` and is now the first entry.</li>
+                    <li>`Catalogue` -> `Refresh user catalogue` will now refresh addons in the user-catalogue from all addon hosts.</li>
+                    <li>HTTP requests now have an 8s timeout.</li>
+                    <li>search, very minor, but trailing whitespace in a search term is now ignored.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>HTTP "User-Agent" is now set correctly.</li>
+                    <li>search results are now updated when the catalogue is switched and the search term, if any, is re-searched for.</li>
+                    <li>Curseforge API has capped the number of results per-request to a max of 50</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.2.0" date="2021-06-02">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>'report' level log messages.</li>
+                    <li>warnings and errors generated while installing an addon are now captured and displayed in a dialog box.</li>
+                    <li>a warning when 'strict' is unticked and an update is available for a mismatched game track.</li>
+                    <li>an 'install' button on the search pane to install addons individually.</li>
+                    <li>a 'split' button that brings up the notice logger at the highest current log level.</li>
+                    <li>another variation of the burning crusade abbreviation 'bcc' for the github game track guesser to look for.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>GUI now disables some actions when no addon directory is selected.</li>
+                    <li>the game track (retail, classic, classic-tbc) + version (1.2.3) is now used to determine if an addon is updateable.</li>
+                    <li>'report' level log messages now appear in an addon's notice logger.</li>
+                    <li>tweaks to error/information dialog panes so messages are easier to read.</li>
+                    <li>the 'downloads' column on the search tab are now formatted according to your locale.</li>
+                    <li>the 'updated' column on the search tab is now centred.</li>
+                    <li>the 'installed' and 'available' columns are now right aligned with ellipses appearing on the left when truncated.</li>
+                    <li>an addon's status (green tick, yellow line, red cross, etc) is limited to just events since the last refresh.</li>
+                    <li>'install' buttons in the search and addon detail panes are slightly less Weird looking.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>a bug where refreshing the 'user' catalogue would throw an error if a repository no longer existed.</li>
+                    <li>a case where hitting 'update all' many times quickly could cause unexpected behaviour and errors.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>github addons will no longer have a `-classic` or `-classic-tbc` suffix.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.1.0" date="2021-05-09">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>a 'welcome' screen for instances of strongbox with no addon directories selected.</li>
+                    <li>added `Classic (TBC)` to selectable game tracks and the `Strict` checkbox to toggle between strictness</li>
+                    <li>support for `Classic (TBC)` for wowinterface, curseforge, tukui and github.</li>
+                    <li>github api now considers the name of the *release* when attempting to detect the game track of an asset.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>replaced the 'any, prefer retail' and 'any, prefer classic' in the game track list with a 'strict' checkbox.</li>
+                    <li>the follow widgets and features are now disabled if no addon directory is selected (more to follow):</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>a bug in wowinterface catalogue generation.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="4.0.0" date="2021-04-16">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>an addon detail tab accessible by double clicking on either an installed addon or a search result.</li>
+                    <li>dedicated log tab.</li>
+                    <li>`View` menu has a menu option for open addon detail tabs with an additional `close all` button.</li>
+                    <li>a column on the `installed` tab that shows the status of an addon.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>console logging is now colour coded.</li>
+                    <li>console log line now excludes a number of fields including the machine's 'hostname'.</li>
+                    <li>many error messages have been truncated or made less verbose now they have that context built-in.</li>
+                    <li>switched from Travis CI to Circle CI.</li>
+                    <li>search pane, styling of the 'already installed' addons now shares the same styling as ignored addons.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>looks like the the gap between the `File` menu labels and their submenus is now gone with an update to JavaFX 15.</li>
+                    <li>truncated 'source' column in the search results when in dark mode.</li>
+                    <li>fixed missing `strongbox.version` value from debug output when run as a binary.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>original Swing GUI</li>
+                    <li>the split window with the tab pane in one half and the notice logger in the other.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="3.3.1" date="2021-04-03">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>added a fix for addons supporting Classic (BC) appearing in the retail game track.</li>
+                    <li>removed debug statement left in the 3.3.0 release</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="3.3.0" date="2021-02-19">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>installing previous releases of addons.</li>
+                    <li>release pinning</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>'re-install' will now attempt to re-install the version of the addon that is currently installed</li>
+                    <li>context menu actions now more accurately reflect what options are available.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>issue #229, "Limited pane size when vertically resizing window"</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="3.2.1" date="2021-01-31">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>fixed issue where URLs of redirect responses were being normalised and the normalised URL didn't exist, causing a 404.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="3.2.0" date="2020-12-30">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>new themes 'dark-green' and 'dark-orange'.</li>
+                    <li>a confirmation before removing an addon directory.</li>
+                    <li>aliases of a few more very popular addons that evade reconciliation.</li>
+                    <li>more (anonymous) debug information to the log file when run with `--debug` or `-v debug`.</li>
+                    <li>application icon.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>refresh/F5 now clears the file cache so updates are always re-fetched.</li>
+                    <li>aliases now use `source` and `source-id` to match against the catalogue rather than `name`.</li>
+                    <li>import no longer skips an addon if the game-track on the addon-dir or the export record is too strict.</li>
+                    <li>import will now use the cache.</li>
+                    <li>github addons now check against multiple releases for a valid asset to install.</li>
+                    <li>made the distinction between colours in the dark and light themes more prominent.</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>a major bug affecting the new GUI on macOS *only*.</li>
+                    <li>a theoretical case when an entire addon directory may be deleted when importing a list of addons.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="3.1.1" date="2020-12-02">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>tukui, changes to accommodate their change in API</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="3.1.0" date="2020-11-28">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>search results pagination</li>
+                    <li>retail and classic addons can be installed in the same addon directory, preferring one over the other</li>
+                    <li>added 'Preferences' menu</li>
+                    <li>add option to remove zip files after installation</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>'import/export' menu has been moved to the 'file' menu</li>
+                    <li>'addon' menu has been moved to the 'file' menu</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>a case where Tukui was returning a `null` value for the `patch` field, causing an error</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="3.0.1" date="2020-10-20">
+            <description>
+                
+                <p>Changed</p>
+                <ul>
+                    <li>ignored addons are no longer matched against the catalogue nor will they emit a warning about not being found in catalogue</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>`.jar` files for macOS were not bundling the native JavaFX libraries</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="3.0.0" date="2020-10-17">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>a new GUI that uses JavaFX</li>
+                    <li>a standalone distribution of srongbox that doesn't require Java to be installed</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>the default GUI to JavaFX</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>addons with an ignored group member were not being 'un-ignored' through the GUI</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>support for the `wowman-data` repository and thus, any future updates for pre-1.0.0 strongbox</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="2.0.1" date="2020-08-11">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>GUI bug causing the UI to hang indefinitely when adding a new addon directory</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="2.0.0" date="2020-08-08">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>addon uninstallation and uninstallation-before-installation</li>
+                    <li>mutual dependency handling</li>
+                    <li>addons can now be explicitly ignored and un-ignored from the GUI</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>'Refresh' button has been moved to the 'View' menu</li>
+                    <li>'Addon directory' button has been moved to the 'File' menu as 'New addon directory'</li>
+                    <li>'Remove addon directory' has been moved to the 'File' menu as 'Remove addon directory'</li>
+                    <li>the 'installed' and 'search' tab selectors under the 'File' menu have been moved to the 'View' menu</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>the addon directory drop down is no longer width constrained</li>
+                    <li>bug where switching themes would preserve the old window</li>
+                    <li>502 and 504 errors from Curseforge are now handled more gracefully with a custom error message</li>
+                    <li>obscure bug where selecting addons through the gui may lead to bad data being propagated through the app</li>
+                    <li>bug when selecting the game track on an empty addon directory</li>
+                    <li>bug when removing the last addon directory</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>removed support for migrating wowman-era configuration and catalogues</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="1.1.0" date="2020-06-27">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>another type of code linting, provided by Joker.</li>
+                    <li>a `--debug` flag that will run strongbox with lots of output and write a log file.</li>
+                    <li>ticket templates with instructions on using the new `--debug` flag</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>'wowman' was renamed 'strongbox' in The List</li>
+                    <li>split 'tukui' into 'tukui' and 'tukui-classic' in the 'source' column</li>
+                    <li>the number of addons displayed in the search results is now tuned according to number of addons in catalogue</li>
+                    <li>'WoW Directory' has moved to the other side of the addon directory drop down and has been renamed 'Addon directory'</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>browser not opening addon URL</li>
+                    <li>very slow searches. Typing has now been decoupled from showing search results so it feels faster.</li>
+                    <li>added a caveat against the screenshots in the README. The dark-mode version only works on particular desktops.</li>
+                    <li>fixed bug that crashes GUI when the next upgrade is available.</li>
+                    <li>support for Java 11 (the next Java LTS)</li>
+                    <li>a very old bug where the app would continue to run when 'Quit' was selected from the menu</li>
+                    <li>useragent was still stuck on 'wowman'</li>
+                    <li>tukui/elvui support was not properly distinguishing the game track leading some tukui addons to not install</li>
+                    <li>search results would highlight anything matching an installed addon's 'label'</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="1.0.0" date="2020-05-31">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>users can now specify their own catalogues</li>
+                    <li>strongbox can now operate without catalogues</li>
+                    <li>last selected addon directory is now remembered between application restarts</li>
+                    <li>migration tasks of wowman config and catalogue and nfo files to strongbox</li>
+                    <li>a 'delete .strongbox.json' action in the gui</li>
+                    <li>code profiling to key sections of the application I can turn on during development</li>
+                    <li>a log file that is written when '--debug' is used to start the application</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>'wowman' changed to 'strongbox'</li>
+                    <li>all usage of 'uri' changed to 'url'</li>
+                    <li>all usage of 'catalog' changes to 'catalogue'</li>
+                    <li>user-catalogue moved to the 'config' directory from the 'data' directory</li>
+                    <li>categories are now 'tags' with common categories unified across addon hosts</li>
+                    <li>function speccing has been greatly cleaned up and is coherent and sane now</li>
+                    <li>catalogues are now on specification version 2 (see ogri-la/strongbox-catalogue)</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>some performance problems, especially around loading catalogues</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>the relational database</li>
+                    <li>last traces of a 'donation url' and 'author name' removed</li>
+                    <li>'alt-name' from catalogue items</li>
+                    <li>'updated date' from catalogue</li>
+                    <li>support for nfo v1</li>
+                    <li>speccing from final build</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.12.4" date="2020-04-22">
+            <description>
+                
+                <p>Changed</p>
+                <ul>
+                    <li>clicking a link will now try the Java way of opening a URL, then look for `xdg-open`, `gnome-open` and `kde-open` to open URL</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>fixes an exception that is raised by clicking a link when Java cannot detect your 'desktop' or a means to open URLs</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.12.3" date="2020-02-23">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>fixes a bug where catalog entries whose 'description' is greater than 255 characters causes a crash while loading the database</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.12.2" date="2020-02-08">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>release 0.12.1 was badly formed and missing the commit with the actual fix.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.12.1" date="2020-02-06">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>addons with no nfo file were attempting to upgrade it and failing</li>
+                    <li>fixed a bug where addons with a nfo file that is *still* invalid even after upgrading have the nfo file deleted</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.12.0" date="2020-02-03">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>'source-id' column to gui (hidden by default)</li>
+                    <li>'game-track' column to gui (hidden by default) that is either 'retail' or 'classic'</li>
+                    <li>support for reconciling addons by 'x-curse', 'x-wowi' and 'x-tukui' ids found in the .toc file</li>
+                    <li>gui tabs can now be switched using mouse scroll</li>
+                    <li>basic support to ignore addons that appear to be under version control</li>
+                    <li>user catalogue (github addons) can now be exported just like a directory full of addons can.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>renamed the 'go' column in the gui to 'source'</li>
+                    <li>export now captures game track so the correct game track is re-installed</li>
+                    <li>importing addons exported using this version of wowman should be much quicker</li>
+                    <li>nfo files (`.wowman.json`) are now specced out and will receive an upgrade on first start of 0.12.0</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>selected directory was incorrect after restarting gui by switching themes</li>
+                    <li>'refresh user catalog' gave no indication it was doing anything until it finally re-wrote the user catalogue</li>
+                    <li>clearing catalogues and clicking refresh didn't see the database rebuilt</li>
+                    <li>importing addons that don't match the currently selected game track are still imported correctly</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>dependency `data.codec`. My usage could be done with plain old java</li>
+                    <li>dependency `cheshire`. Functionality satisfied by `clojure.data.json`</li>
+                    <li>'debugging' mode. I never used it and it wasn't doing any special</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.11.0" date="2019-12-31">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>added www.tukui.org as an addon host</li>
+                    <li>added github.com as an addon host, using the 'releases' mechanism</li>
+                    <li>'user' catalogues of addons. This is a catalog controlled by the user with addons from hosts like github.com</li>
+                    <li>`source` attributes are now present in the curseforge and wowinterface catalogues</li>
+                    <li>mac support</li>
+                    <li>a 'dark' theme for those Linux users who are using a dark widget set</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>new addon directories will have their game track set to `classic` by default if `_classic_` is present in the path</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>exporting addons using the `Import/Export -> Export addon list` now uses the currently selected addon directory</li>
+                    <li>duplicate categories in the curseforge catalogue generation</li>
+                    <li>`.part` files are now removed if an error would cause a download to fail</li>
+                    <li>if an addon directory went missing between two calls to save settings, all addon directory settings would be removed</li>
+                    <li>a regression introduced in 0.10.0 where missing catalogue fields, like `description`, would become `description=nil` after pulling it out of the database.</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>special handling for `curseforge.com` HTTP redirect behaviour</li>
+                    <li>dependency `metosin/spec-tools`. It's a sophisticated tool but I just wasn't taking advantage of it</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.10.2" date="2019-12-07">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>a button that appears next to the retail/classic dropdown menu when a more recent version of wowman is available</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>items in the catalogue that are from an unknown/unhandled source are now ignored (rather than crashing)</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.10.1" date="2019-11-01">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>fixes issue #83 where an addon would fail to install from the search results if the search results were unfiltered</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.10.0" date="2019-10-14">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>the catalogue is now loaded into an embedded database for better addon searching and reduced code complexity</li>
+                    <li>support for multiple catalogues, defaulting to a 'short' catalogue with about 6k very old addons pruned from it</li>
+                    <li>an option to clear the catalogue cache so that they are re-downloaded</li>
+                    <li>Java Swing 'native LNF' (look and feel) for Mac users (technically unsupported)</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>switched from supporting OpenJDK 10 (EOL already) in TravisCI to OpenJDK 11 (EOL 2024)</li>
+                    <li>failure to read the catalogue (corrupt data) will see the catalogue deleted, re-downloaded and a load attempted again</li>
+                    <li>search for an addon now searches an addon's name (starting with) and description (contains)</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>User Agent value used in HTTP requests would get truncated in releases with a minor version greater than 9</li>
+                    <li>partially downloaded files should no longer interfere with normal operation of wowman</li>
+                    <li>GUI tests were bypassing the file-system path generation that used environment variables</li>
+                    <li>Curseforge API bug where the 'gameVersionFlavor' misleadingly indicated an addon didn't support Classic or Retail</li>
+                    <li>a 'download' message was not being printed as it had been downgraded from 'info' to 'debug'</li>
+                    <li>default resolution was set at 640x480 which was being ignored because the contents of the frame were being 'packed'</li>
+                    <li>an overzealous regular expression would cause a mis-match between addons with trailing numerals in their name</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>support for partial catalogue 'updates' and scraping the recently updated pages on wowinterface and curseforge</li>
+                    <li>support for scraping HTML from Curseforge</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.9.2" date="2019-09-21">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>attempting to re-install an addon that is classic-only into an addon-dir that is 'retail' (or vice versa) caused a</li>
+                    <li>fault</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.9.1" date="2019-09-20">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>a regular expression that stripped version information from the 'title' value in a .toc file was too aggressive and</li>
+                    <li>was causing incorrect matches against the catalog.</li>
+                    <li>the GUI directory picker looks and behaves differently on a Mac if it's 'type' is 'open' rather than my custom</li>
+                    <li>'select'. The change doesn't appear to affect the directory picker on Linux at all except for the label change.</li>
+                    <li>a missing 'Title' attribute in a `.toc` file could cause the GUI to crash. The problem has been fixed as well as a</li>
+                    <li>measure to prevent individual `.toc` files from causing a crash.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.9.0" date="2019-09-03">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>support for multiple addon directories</li>
+                    <li>support for multiple 'game tracks' (retail and classic)</li>
+                    <li>'source-id' to the catalog. It makes for quicker and more confident matching of wowman-installed addons to the catalog</li>
+                    <li>improved test coverage.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>the 'WoW' column has been re-enabled on the installed addons tab</li>
+                    <li>curseforge scraping is now happening entirely from their API</li>
+                    <li>wowinterface scraping is now using a mixture of their API and HTML</li>
+                    <li>raynes/fs library has been switched to clj-commons/fs</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>better handling of curseforge addon releases in general</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.8.2" date="2019-08-26">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>fixed a regression introduced in release 0.8.1 where addons needing an update were not being marked as such</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.8.1" date="2019-08-17">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>fixed case of a curseforge addon with no files crashing thread. a warning is issued with a link to the empty page.</li>
+                    <li>any unhandled exceptions while fetching addon information will now simply report the error and carry on</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.8.0" date="2019-08-12">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>badly behaved addons are no longer installable</li>
+                    <li>a warning is now issued when an addon installs what it thinks are other 'unrelated' addons</li>
+                    <li>test coverage is now at 70%</li>
+                    <li>addon export and import</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>the catalog is now downloaded from the wowman-data 'release' files rather than a raw repository file</li>
+                    <li>improved the zip file integrity check</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>fixed two bugs related to catalog generation that came out of the Curseforge site update</li>
+                    <li>fixed a bug involving stale reads of the etag database causing empty files to be created</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.7.2" date="2019-06-29">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>not part of codebase, but `wowman-data`, where wowman pulls it's catalog from, now has automated daily/weekly updates</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>Curseforge changed their website, breaking scraping. Scraping has now been tentatively marked as fixed.</li>
+                    <li>wowman release info now downloaded in background after app start so there is no delay when clicking Help -> About</li>
+                    <li>date+time manipulation is now done by `java-time` to remove a dependency and some complexity</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>fixed bug in updating curseforge catalog where old paths to files caused a NullPointerException</li>
+                    <li>fixed bug in updating curseforge *and* wowinterface where data dirs without their catalog present would fail spec</li>
+                    <li>selected search results are now de-selected after a successful installation of addons</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>`clj-time` in favour of `clojure.java-time`</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.7.1" date="2019-06-23">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>Fixed issue where a curseforge 404 response killed an async thread the GUI was using to download addon updates.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.7.0" date="2019-06-08">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>wowinterface.com support. addons can now be installed from wowinterface.com just like they can from curseforge.com</li>
+                    <li>`catalog.json` is now downloaded instead of `curseforge.json`. This muxes the contents of wowinterface and curseforge.</li>
+                    <li>an 'age' field for addons. Intended to help filter really ancient addons from search results in a later release.</li>
+                    <li>better handling of `.json` files for the following cases: missing file, bad data in file, invalid data in file.</li>
+                    <li>more actions that can be called from the command line. Nothing fancy, just wowinterface/curseforge specific versions</li>
+                    <li>of existing actions.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>wowman will refuse to run as the 'root' user</li>
+                    <li>'go' field now has a link to wowinterface.com for wowinterface addons</li>
+                    <li>slight change to addon matching rules to account for multiple catalog sources. There is now a preference for</li>
+                    <li>curseforge if an addon appears in multiple sources.</li>
+                    <li>renamed `fs.clj` to `toc.clj`</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>Application wasn't exiting (properly) when run as a jar. It would exit eventually, but not immediately.</li>
+                    <li>Paths to cache and configuration directories fixed up during testing so tests run in a more isolated environment</li>
+                    <li>Fake HTTP responses added to tests so curseforge.json/catalog.json is not downloaded while testing</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.6.0" date="2019-05-08">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>Arch Linux PKGBUILD (AUR)</li>
+                    <li>total number of downloads is now captured in the catalog and is available in the gui; visible in the search tab</li>
+                    <li>a 'spec' section to the catalog with a 'version' of '1'. I expect it to change soon and want to support older versions</li>
+                    <li>more aliases for the top 50 most installed addons. This will help with automatic matching and re-installion of addons</li>
+                    <li>added a 'go' link to the search column so you can visit the curseforge addon page in your browser</li>
+                    <li>row highlighting on mouseover in the search tab, matches the installed tab. helps the eyes trace across columns</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>improved download caching</li>
+                    <li>addons in catalog are now ordered alphabetically by their keys. I was relying on an implementation detail previously</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>installed addons are refreshed after `.wowman.json` files are deleted</li>
+                    <li>column widths in the search tab got some TLC</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>the `daily-cache-dir`. cache files now expire based on their last modification time.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.5.0" date="2019-04-25">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>a 'go' link that will open a link to the addon's catalog page</li>
+                    <li>a simple row highlighting on the installed addons screen when moving your cursor over an addon</li>
+                    <li>errors and warnings in the notice logger are now highlighted yellow and red</li>
+                    <li>static matching of installed -> catalog addons via a simple mapping has been added for popular addons</li>
+                    <li>minor: support for highlighting unmatched addons, disabled by default, possibly not helpful at all</li>
+                    <li>a handy dandy status bar at the bottom of the screen with number of unmatched addons and total addons in catalog</li>
+                    <li>a 'help' menu with an 'about' menuitem that displays the current version, the current release, the licence and a url</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>the 'categories', 'updated' and 'WoW' columns on the installed addons screen are now hidden by default</li>
+                    <li>the 'state' directory has been split into 'data' and 'config' directories and now follow XDG recommended paths</li>
+                    <li>matching between installed addons and catalog addons has been improved, now searching across multiple joins</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>minor: inconsistent widths between notice logger and the tables above them causing scrollbars to be misaligned</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.4.0" date="2019-04-15">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>bad addon zip files (empty or malformed) are now removed to prevent a later cache hit</li>
+                    <li>clear cache menu option to manually clear out accumulating cache and downloaded addon zip data</li>
+                    <li>delete .wowman.json and wowmatrix.dat files actions added to clear cache menu</li>
+                    <li>columns that were being removed outside of debug mode are now simply hidden and can be toggled on/off</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>curseforge.json file is now downloaded once a day, if necessary according to etag</li>
+                    <li>previous daily cache dirs are now pruned back on app start</li>
+                    <li>highlighted row colour is no longer so close to the 'selected' row colour</li>
+                    <li>'install selected' on search screen is now disabled until addons are selected</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>null dates in gui were causing a strange rendering effect</li>
+                    <li>the :alt-name attribute on a sub-par match was being used to build a url that would result in a 404</li>
+                    <li>re-installing an addon with no match in catalog caused a stacktrace</li>
+                    <li>column widths on the installed addon screen no longer truncate title are reasonably sized values</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.3.1" date="2019-04-05">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>Fixed a bug where etag was being written before cache directory created. Wouldn't have affected existing installations.</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.3.0" date="2019-04-05">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>added highlighted rows when an addon needs updating</li>
+                    <li>added highlighted rows to search pane to indicate installed addons</li>
+                    <li>added a context menu to installed addons pane and moved actions that target selections to it</li>
+                    <li>added special handling when installing multiple addons. It now updates gui as it works through each addon.</li>
+                    <li>both `utils/download` and `utils/download-file` now share the same user-agent when making remote calls</li>
+                    <li>user-agent now uses the wowman version stored in the project file if running from the repl, or the pom if uberjar'ed</li>
+                    <li>input text field on 'search' pane now focused immediately</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>collapsed main button bar back into single row of buttons</li>
+                    <li>'re-install all' now visible works it's way through the addons instead of just pausing indefinitely</li>
+                </ul>
+
+                <p>Removed</p>
+                <ul>
+                    <li>removed 'update?' column in favour of highlighted rows</li>
+                    <li>removed 're-install all' button from main button bar. It can still be found under 'Addons' menu</li>
+                    <li>'save' and 'load' settings are now only available if running debug mode</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.2.0" date="2019-03-30">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>confirmation dialog when deleting addons</li>
+                    <li>http error handling for unsuccessful requests</li>
+                    <li>http etag support when downloading files</li>
+                    <li>checks when starting app with an unwriteable directory, or downloading an addon to an unwriteable directory.</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>quietened some log noise causing install/update/delete results to be pushed off screen</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.1.1" date="2019-03-24">
+            <description>
+                
+                <p>Fixed</p>
+                <ul>
+                    <li>CLI "update-addon-list" action now actually updates the addon list instead of writing a useless separate file</li>
+                    <li>GUI regression in post-install/update/delete behaviour when listing addons.</li>
+                </ul>
+
+                <p>Added</p>
+                <ul>
+                    <li>detailed contributor guidelines</li>
+                    <li>`pom.xml` generated file</li>
+                </ul>
+            </description>
+        </release>
+
+
+        <release version="0.1.0" date="2019-03-23">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>initial release! squashed history</li>
+                    <li>a GUI and a very rough 'headless' mode</li>
+                    <li>two tabbed panes in the GUI, 'installed' and 'search'</li>
+                    <li>install, update and delete functionality for addons</li>
+                    <li>grouping newly installed addons if they unpack to multiple directories</li>
+                    <li>searching and installing from a complete list of curseforge addons</li>
+                    <li>a notice logger for operations that are happening</li>
+                    <li>logic to do the occasional large curseforge.com update and smaller incremental updates more regularly</li>
+                    <li>CI and releases with Travis-CI</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
+
+</component>

@@ -1,0 +1,37 @@
+{
+  "artefacts": {
+    "strongbox-7.8.0-standalone.jar": "72a5203e843fb6655825b17b18c4eb6e8b5b0106452e26bb2cd55a04593d25b7",
+    "strongbox-7.8.0-standalone.jar.sha256": "8710167742d79eb4f90fb5d4e5e12754ae305695af85854c513383987b7d3891",
+    "strongbox-7.8.0-x86_64.AppImage": "4c85253451aadc7e2592d6821c30152fad86d916b6ffadfb2ab65dae2db4f848",
+    "strongbox-7.8.0-x86_64.AppImage.sha256": "560590c6ae6c5f16294c54dc69a4438be3458780cde9fa4c98a42b6ae2f16fd0"
+  },
+  "catalogue_sha256": "e6a53d0dd3d101fe1480448a525d5a51d76e336f5c86e27de072287786b68628",
+  "derived": {
+    "aur": "a8c8c4980b44ca6e1fcd2fd29ceeafbd729b005e",
+    "flathub": "9e59ca7df811bc5fe1cba5b915efcf69a3d91ebf"
+  },
+  "glibc": {
+    "ceiling": "2.27",
+    "floor": "2.15",
+    "worst": "jar-natives/libdecora_sse.so"
+  },
+  "images": {
+    "arch": "archlinux:base-devel@sha256:51dd3d24f7fba779e7c471caeee7804c50e8c134ad948e19685a1c83a42facc3",
+    "flatpak-lint": "ghcr.io/flathub-infra/flatpak-builder-lint:latest@sha256:8ed347aa44505db9f786a797ab78239bdd7c92027bd7a6817af51add26a20b83",
+    "glibc-ceiling": "ubuntu:18.04@sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98",
+    "sb-build": "sha256:a9d27952f3e895bdfe5cb71654d87bd8de54f53f30a57a3f60e0e2a8350cf4ff",
+    "sb-publish": "sha256:72101b11481fec4ef8adcf4c48844184ebfbb9230c0ece84d110c8951e897a42",
+    "temurin": "eclipse-temurin:17-jdk-noble@sha256:606f2834a35af6180383a6430f0d2c9671d48aca74925061c3e5df2c12e8b0cd",
+    "ubuntu": "ubuntu:24.04@sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60"
+  },
+  "jdk": "17.0.20.1+1",
+  "schema": 1,
+  "sources": {
+    "release-script": {
+      "commit": "24f990cb52d2e757eb695af31c265e32befb1420",
+      "dirty": false
+    },
+    "strongbox": "365b2d6496c1a0fa8ea8afd238bcc7396049e5b4"
+  },
+  "version": "7.8.0"
+}
