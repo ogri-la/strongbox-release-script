@@ -73,7 +73,7 @@ anything when remote state differs from the build.
 
     python3 -m unittest discover -s tests
     ./check-pins.sh
-    tests/integration-build.sh
+    tests/integration-build.sh <version>
     tests/integration-prep.sh
     tests/integration-publish.sh
 

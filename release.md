@@ -45,7 +45,7 @@ update this doc with anything new
 maintenance:
     pins.env holds every image digest and tool checksum. ./check-pins.sh checks them
     python3 -m unittest discover -s tests
-    tests/integration-build.sh    slow, builds the last release locally, changes nothing remote
+    tests/integration-build.sh <version>    slow, builds the version strongbox's master declares, changes nothing remote
     tests/integration-prep.sh     prepares a major release locally, changes nothing remote
     tests/integration-publish.sh  publishes to throwaway local git remotes
     work/ can be deleted at any time after a release is published
@@ -58,5 +58,5 @@ updating pins (when a base or tool reaches end of support, or before a release):
             or download it and run sha256sum. update the _VERSION and _SHA256 lines together
     Temurin: TEMURIN_VERSION must match JAVA_RUNTIME_VERSION in the new image, the image build checks this
     then:   ./check-pins.sh
-            tests/integration-build.sh, which also re-checks the glibc floor and the JRE start
+            tests/integration-build.sh <version>, which also re-checks the glibc floor and the JRE start
     images are rebuilt automatically when pins.env or images/ change

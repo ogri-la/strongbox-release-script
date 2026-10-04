@@ -14,11 +14,11 @@ declare -A IMAGE_REFS # image name => reference given to `docker run`
 
 # --- images
 
-# prints a tag derived from the image's build context and the pins, so a changed pin rebuilds it
+# prints a tag derived from the image's files, the shared files and the pins, so a change to any rebuilds it
 image_tag() {
     local name="$1"
     local digest
-    digest=$(cat "$ROOT/pins.env" "$ROOT/images/$name"/* | sha256sum)
+    digest=$(cat "$ROOT/pins.env" "$ROOT/images/$name"/* "$ROOT/images/common"/* | sha256sum)
     printf 'strongbox-release/%s:%s' "$name" "${digest:0:12}"
 }
 
@@ -29,7 +29,7 @@ build_image() {
         args+=(--build-arg "$key=${PINS[$key]}")
     done
     log INFO "building image" "image=$tag"
-    docker build --quiet "${args[@]}" --tag "$tag" "$ROOT/images/$name" > /dev/null \
+    docker build --quiet "${args[@]}" --tag "$tag" --file "$ROOT/images/$name/Dockerfile" "$ROOT/images" > /dev/null \
         || die "image build failed" "image=$name"
 }
 

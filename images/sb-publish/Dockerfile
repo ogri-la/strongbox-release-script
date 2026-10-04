@@ -1,6 +1,6 @@
 # publish image: git, gh and the tools that derive and validate per-release files.
 # used for fetching, deriving and every remote stage. compiles nothing.
-# every build argument comes from `pins.env`.
+# every build argument comes from `pins.env`. the build context is `images/`.
 
 ARG IMAGE_UBUNTU
 FROM ${IMAGE_UBUNTU}
@@ -32,6 +32,6 @@ RUN cd /tmp \
     && rm -f parse-changelog.tar.gz parse-changelog
 
 # stages run as the host user's uid, which has no passwd entry here, and ssh refuses to run without one.
-COPY stage-entry /usr/local/bin/stage-entry
+COPY common/stage-entry /usr/local/bin/stage-entry
 RUN chmod 666 /etc/passwd
 ENTRYPOINT ["/usr/local/bin/stage-entry"]

@@ -1,6 +1,6 @@
 # build image: Temurin 17 JDK, leiningen, appimagetool and the tools to inspect shared objects.
 # no credentials are ever given to containers of this image.
-# every build argument comes from `pins.env`.
+# every build argument comes from `pins.env`. the build context is `images/`.
 
 ARG IMAGE_TEMURIN
 FROM ${IMAGE_TEMURIN}
@@ -14,11 +14,12 @@ ARG APPIMAGETOOL_SHA256
 ARG APPIMAGE_RUNTIME_VERSION
 ARG APPIMAGE_RUNTIME_SHA256
 
-# fonts and GTK: compiling strongbox initialises JavaFX, which loads its native libraries.
+# fonts, GTK and OpenGL: compiling strongbox initialises JavaFX, which loads its native libraries,
+# including its OpenGL pipeline (`prism_es2`, which needs libGL and libXxf86vm).
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         binutils ca-certificates file git python3 unzip wget \
-        fonts-dejavu libgtk-3-0t64 libxtst6 \
+        fonts-dejavu libgtk-3-0t64 libxtst6 libgl1 libxxf86vm1 \
     && rm -rf /var/lib/apt/lists/*
 
 # the base image's JDK must be the pinned one.
@@ -47,4 +48,10 @@ RUN cd /opt \
     && wget --quiet --output-document /opt/appimage-runtime \
         "https://github.com/AppImage/type2-runtime/releases/download/${APPIMAGE_RUNTIME_VERSION}/runtime-x86_64" \
     && echo "${APPIMAGE_RUNTIME_SHA256}  /opt/appimage-runtime" | sha256sum --check --strict
-COPY appimagetool /usr/local/bin/appimagetool
+COPY sb-build/appimagetool /usr/local/bin/appimagetool
+
+# stages run as the host user's uid, which has no passwd entry here. without one, java sets `user.home` to '?'
+# and JavaFX extracts its native libraries into a directory named '?' in the working directory.
+COPY common/stage-entry /usr/local/bin/stage-entry
+RUN chmod 666 /etc/passwd
+ENTRYPOINT ["/usr/local/bin/stage-entry"]

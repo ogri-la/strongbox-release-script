@@ -4,12 +4,13 @@
 # reads unchanged. a build that fails leaves dist/ as it was.
 # dist/ is restored afterwards, so the test leaves the working tree as it found it.
 # slow: clones, compiles strongbox and builds an AppImage. needs network and docker.
-# usage: tests/integration-build.sh [version], default is the last released version
+# usage: tests/integration-build.sh <version>, the version strongbox's master declares
 set -euo pipefail
 source "$(dirname "$0")/../lib/common.sh"
 source "$ROOT/lib/stages.sh"
 
-given="${1:-7.7.0}"
+given="${1:-}"
+valid_version "$given" || die "usage: tests/integration-build.sh <version>, the version strongbox's master declares"
 
 require_docker
 load_pins
