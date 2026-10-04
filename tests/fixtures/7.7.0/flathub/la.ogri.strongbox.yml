@@ -1,0 +1,52 @@
+app-id: la.ogri.strongbox
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+    - org.freedesktop.Sdk.Extension.openjdk17
+
+command: strongbox
+
+finish-args:
+    - --socket=x11
+    - --share=network
+    - --device=dri
+    - --filesystem=host
+    - --share=ipc
+
+modules:
+    - name: openjdk
+      buildsystem: simple
+      build-commands:
+        - /usr/lib/sdk/openjdk17/install.sh
+
+    - name: strongbox
+      buildsystem: simple
+      build-commands:
+        - install -D metainfo.xml /app/share/metainfo/la.ogri.strongbox.metainfo.xml
+        - install -D strongbox.desktop /app/share/applications/la.ogri.strongbox.desktop
+        - install -D -m644 strongbox.svg /app/share/icons/hicolor/scalable/apps/la.ogri.strongbox.svg
+        - install -D -m755 autogen.sh /app/bin/strongbox
+        - install -D app.jar /app/bin/app.jar
+      sources:
+        - type: file
+          url: https://github.com/ogri-la/strongbox/releases/download/7.7.0/strongbox-7.7.0-standalone.jar
+          dest-filename: app.jar
+          sha256: 498d9ff11f63022f8a2b54e309e283799c744574b42fd17aa229c34c648dcc8f
+
+        - type: script
+          commands:
+            - /app/jre/bin/java -jar /app/bin/app.jar "$@"
+
+        - type: file
+          url: https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/7.7.0/metainfo.xml
+          sha256: 71a43510a26658100fc02bd4b75bf471cdaab263a92b5525d36c04d6d28b9612
+
+        - type: file
+          url: https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/7.7.0/strongbox.desktop
+          sha256: 960bcf565329cfd9f41f0e744a43071048e340578e04495b5c3d617a2f8408e5
+
+        - type: file
+          url: https://raw.githubusercontent.com/ogri-la/strongbox-flatpak/7.7.0/strongbox.svg
+          sha256: e8d68fd32e96834d12940df27c2fd4c05fa303c1473e8f50b6a3a93f283bc2fc
+

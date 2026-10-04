@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "strongbox build record",
+  "description": "Written by `release.sh build` to `dist/build.json`, read by `release.sh publish`. Records what went into a release and what came out.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "sources",
+    "images",
+    "jdk",
+    "catalogue_sha256",
+    "glibc",
+    "artefacts",
+    "derived"
+  ],
+  "properties": {
+    "schema": {
+      "type": "integer",
+      "enum": [
+        1
+      ]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "strongbox",
+        "release-script"
+      ],
+      "properties": {
+        "strongbox": {
+          "$ref": "#/$defs/commit"
+        },
+        "release-script": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "commit",
+            "dirty"
+          ],
+          "properties": {
+            "commit": {
+              "$ref": "#/$defs/commit"
+            },
+            "dirty": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "images": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "temurin",
+        "ubuntu",
+        "glibc-ceiling",
+        "arch",
+        "sb-build",
+        "sb-publish",
+        "flatpak-lint"
+      ],
+      "properties": {
+        "temurin": {
+          "$ref": "#/$defs/pinned_image"
+        },
+        "ubuntu": {
+          "$ref": "#/$defs/pinned_image"
+        },
+        "glibc-ceiling": {
+          "$ref": "#/$defs/pinned_image"
+        },
+        "arch": {
+          "$ref": "#/$defs/pinned_image"
+        },
+        "sb-build": {
+          "$ref": "#/$defs/image_id"
+        },
+        "sb-publish": {
+          "$ref": "#/$defs/image_id"
+        },
+        "flatpak-lint": {
+          "$ref": "#/$defs/pinned_image"
+        }
+      }
+    },
+    "jdk": {
+      "type": "string",
+      "pattern": "^17\\.[0-9.+]+$"
+    },
+    "catalogue_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "glibc": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "floor",
+        "worst",
+        "ceiling"
+      ],
+      "properties": {
+        "floor": {
+          "$ref": "#/$defs/glibc_version"
+        },
+        "worst": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ceiling": {
+          "$ref": "#/$defs/glibc_version"
+        }
+      }
+    },
+    "artefacts": {
+      "type": "object",
+      "minProperties": 4,
+      "additionalProperties": {
+        "$ref": "#/$defs/sha256"
+      }
+    },
+    "derived": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "flathub",
+        "aur"
+      ],
+      "properties": {
+        "flathub": {
+          "$ref": "#/$defs/commit"
+        },
+        "aur": {
+          "$ref": "#/$defs/commit"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "pinned_image": {
+      "type": "string",
+      "pattern": "^[a-z0-9./_-]+:[A-Za-z0-9._-]+@sha256:[0-9a-f]{64}$"
+    },
+    "image_id": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "glibc_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$"
+    }
+  }
+}

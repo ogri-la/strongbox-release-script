@@ -1,0 +1,72 @@
+{
+  "phases": [
+    {
+      "name": "metadata",
+      "entries": [
+        {
+          "template": "strongbox.desktop",
+          "output": "aur/strongbox.desktop",
+          "overlay": {
+            "desktop_exec": "strongbox",
+            "desktop_icon_line": "#Icon=strongbox"
+          }
+        },
+        {
+          "template": "strongbox.desktop",
+          "output": "flatpak/strongbox.desktop",
+          "overlay": {
+            "desktop_exec": "",
+            "desktop_icon_line": "Icon=la.ogri.strongbox"
+          }
+        },
+        {
+          "template": "strongbox.desktop",
+          "output": "appimage/strongbox.desktop",
+          "overlay": {
+            "desktop_exec": "AppRun",
+            "desktop_icon_line": "Icon=strongbox"
+          }
+        },
+        {
+          "template": "flatpak/metainfo.xml",
+          "output": "flatpak/metainfo.xml"
+        },
+        {
+          "copy": "strongbox:resources/strongbox.svg",
+          "output": "flatpak/strongbox.svg"
+        },
+        {
+          "template": "release-notes.md",
+          "output": "release-notes.md"
+        },
+        {
+          "template": "aur/changelog",
+          "output": "aur/changelog"
+        },
+        {
+          "template": "aur/.gitignore",
+          "output": "aur/.gitignore"
+        }
+      ]
+    },
+    {
+      "name": "packages",
+      "hashes": [
+        "aur/strongbox.desktop",
+        "flatpak/metainfo.xml",
+        "flatpak/strongbox.desktop",
+        "flatpak/strongbox.svg"
+      ],
+      "entries": [
+        {
+          "template": "aur/PKGBUILD",
+          "output": "aur/PKGBUILD"
+        },
+        {
+          "template": "flathub/la.ogri.strongbox.yml",
+          "output": "flathub/la.ogri.strongbox.yml"
+        }
+      ]
+    }
+  ]
+}

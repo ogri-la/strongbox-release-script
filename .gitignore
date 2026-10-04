@@ -8,4 +8,8 @@
 /.vagrant
 /appimagetool
 /release/
-
+/la.ogri.strongbox
+/strongbox-flatpak
+/vagrant-strongbox-pkgbuild
+/work/
+__pycache__/

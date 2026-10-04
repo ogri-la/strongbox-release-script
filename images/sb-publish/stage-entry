@@ -1,0 +1,6 @@
+#!/bin/sh
+# adds a passwd entry for the current uid when it has none, then runs the stage command.
+if ! getent passwd "$(id -u)" > /dev/null; then
+    echo "stage:x:$(id -u):$(id -g)::${HOME:-/tmp}:/bin/sh" >> /etc/passwd
+fi
+exec "$@"

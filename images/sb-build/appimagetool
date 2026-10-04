@@ -1,0 +1,3 @@
+#!/bin/sh
+# runs the extracted appimagetool with the pinned runtime, so it never downloads an unpinned one.
+exec /opt/appimagetool/AppRun --runtime-file /opt/appimage-runtime "$@"

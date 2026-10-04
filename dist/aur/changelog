@@ -1,0 +1,14 @@
+### Added
+
+* Support for new retail release 'Midnight'
+
+### Changed
+
+* Semver sorting now considers pre-release and build tokens
+* Pre-release versions of Strongbox are now ignored when considering if Strongbox is updateable
+
+### Fixed
+
+* Non-deterministic test `utils_test/with-lock--contention`
+    - had been bugging me for a while. 
+    - instead of a coordinating threads sleeping to block, we now acquire and realise promises
