@@ -1,15 +1,3 @@
-/gh
 /.github-token
-/strongbox
-/strongbox-pkgbuild
-/strongbox-appimage
-/semver2.sh
-/parse-changelog
-/.vagrant
-/appimagetool
-/release/
-/la.ogri.strongbox
-/strongbox-flatpak
-/vagrant-strongbox-pkgbuild
 /work/
 __pycache__/
