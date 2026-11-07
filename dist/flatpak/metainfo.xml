@@ -35,27 +35,27 @@
     <launchable type="desktop-id">la.ogri.strongbox.desktop</launchable>
     <screenshots>
         <screenshot type="default">
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-installed.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/0210d0844fa111820f1aca7c0c370d9c6d61e534/screenshots/screenshot-7.0.0-installed.png</image>
             <caption>Strongbox main window, standard width with default columns.</caption>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-dark-installed.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/0210d0844fa111820f1aca7c0c370d9c6d61e534/screenshots/screenshot-7.0.0-dark-installed.png</image>
             <caption>Strongbox main window, standard width with default columns (dark).</caption>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-installed-fat.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/0210d0844fa111820f1aca7c0c370d9c6d61e534/screenshots/screenshot-7.0.0-installed-fat.png</image>
             <caption>Strongbox main window, wide width with many columns.</caption>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-dark-installed-fat.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/0210d0844fa111820f1aca7c0c370d9c6d61e534/screenshots/screenshot-7.0.0-dark-installed-fat.png</image>
             <caption>Strongbox main window, wide width with many columns (dark).</caption>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-installed-skinny.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/0210d0844fa111820f1aca7c0c370d9c6d61e534/screenshots/screenshot-7.0.0-installed-skinny.png</image>
             <caption>Strongbox main window, narrow width with few columns.</caption>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/ogri-la/strongbox/365b2d6496c1a0fa8ea8afd238bcc7396049e5b4/screenshots/screenshot-7.0.0-dark-installed-skinny.png</image>
+            <image>https://raw.githubusercontent.com/ogri-la/strongbox/0210d0844fa111820f1aca7c0c370d9c6d61e534/screenshots/screenshot-7.0.0-dark-installed-skinny.png</image>
             <caption>Strongbox main window, narrow width with few columns (dark).</caption>
         </screenshot>
     </screenshots>
@@ -67,6 +67,29 @@
     <content_rating type="oars-1.0" />
 
     <releases>
+
+        <release version="7.8.1" date="2026-11-07">
+            <description>
+                
+                <p>Added</p>
+                <ul>
+                    <li>New addon directories with `_forever_` in their path default to the Forever game track, like `_classic_` does for Classic</li>
+                </ul>
+
+                <p>Changed</p>
+                <ul>
+                    <li>Debug log at shutdown now describes each cleanup step instead of printing function objects</li>
+                </ul>
+
+                <p>Fixed</p>
+                <ul>
+                    <li>'Import addon' failing for addons with only a Forever release.</li>
+                    <li>Installed addons with several `.toc` files but none for the addon dir's game track or its fallbacks were hidden.</li>
+                    <li>Linting issues detected by new version of Joker</li>
+                </ul>
+            </description>
+        </release>
+
 
         <release version="7.8.0" date="2026-10-04">
             <description>
